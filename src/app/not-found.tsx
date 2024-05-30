@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { APP_ROUTES } from "@/lib/utils";
 import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -30,7 +31,7 @@ function LottieAnimation() {
     <div className="h-screen">
       <div>{View}</div>
       <div className="flex justify-center items-center mb-16 ">
-        <Link href="/dashboard">
+        <Link href={`/${APP_ROUTES.DASHBOARD}`}>
           <Button className=" bg-blue-500">
             <ArrowLeftIcon/>
             Go to Home

@@ -9,6 +9,8 @@ import {
 } from "../ui/tooltip";
 import { Button } from "../ui/button";
 import StudentDeleteBtn from "../common/StudentDeleteBtn";
+import StudentPaymentBtn from "../common/StudentPaymentBtn";
+import StudentViewBtn from "../common/StudentViewBtn";
 
 const TableBodyRow = ({ student }: { student: TStudent }) => {
   return (
@@ -38,41 +40,11 @@ const TableBodyRow = ({ student }: { student: TStudent }) => {
       <TableCell className="px-6 text-right">
         <div className="flex flex-row-reverse gap-2 ">
           <StudentDeleteBtn studentId={student._id} />
+          <StudentPaymentBtn student={student} />
+          <StudentViewBtn studentId={student._id} />
 
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="text-green-300 rounded-full p-2 hover:text-green-600"
-                >
-                  {/* <p className=" text-red-300 p-2 hover:bg-muted rounded-full"> */}
-                  <BadgeDollarSign size={23} />
-                  {/* </p> */}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p className="text-green-500">Payment</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="text-gray-500 rounded-full p-2 hover:text-gray-600"
-                >
-                  {/* <p className=" text-green-300 p-2 hover:bg-muted rounded-full"> */}
-                  <SquareGanttChart size={23} />
-                  {/* </p> */}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p className="text-gray-700">View</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          
+          
         </div>
       </TableCell>
     </TableRow>

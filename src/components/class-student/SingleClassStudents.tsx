@@ -38,6 +38,7 @@ import {
   ReactPortal,
   AwaitedReactNode,
 } from "react";
+import { APP_ROUTES } from "@/lib/utils";
 
 const SingleClassStudents = ({ classId }: { classId: string }) => {
   const { data, error, isLoading } = useGetStudentByClassIdQuery(classId);
@@ -84,7 +85,7 @@ const SingleClassStudents = ({ classId }: { classId: string }) => {
               </TableCell>
 
               <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4 text-green-500">
-                <Link href="/dashboard/student-details">
+                <Link href={`/${APP_ROUTES.STUDENT_DETAILS}`}>
                   <Button>Details</Button>
                 </Link>
               </TableCell>
@@ -115,7 +116,7 @@ const SingleClassStudents = ({ classId }: { classId: string }) => {
                       </div>
                     </div>
                     <AlertDialogFooter>
-                      <Link href="/dashboard/payment">
+                      <Link href={`/${APP_ROUTES.PAYMENT}`}>
                         <Button type="submit">Payment Now</Button>
                       </Link>
                     </AlertDialogFooter>

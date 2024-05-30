@@ -31,6 +31,7 @@ import { useGetStudentPaymentHistoryByClassAndStudentIdQuery } from "@/redux/fea
 import { TSinglePayInfo } from "@/types/payment.type";
 import { usePDF } from "react-to-pdf";
 import { TStudent } from "@/types/student";
+import { APP_ROUTES } from "@/lib/utils";
 
 const StudentDetails = ({ studentId }: { studentId: string }) => {
   const { toPDF, targetRef } = usePDF({ filename: "page.pdf" });
@@ -84,7 +85,9 @@ const StudentDetails = ({ studentId }: { studentId: string }) => {
   return (
     <div className="p-5">
       <div className="flex justify-end ">
-        <Link href={`/dashboard/update-student/${studentDetail?.data?._id}`}>
+        <Link
+          href={`/${APP_ROUTES.UPDATE_STUDENT}/${studentDetail?.data?._id}`}
+        >
           <Button>Update</Button>
         </Link>
       </div>
