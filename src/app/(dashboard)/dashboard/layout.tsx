@@ -6,7 +6,6 @@ import Providers from "@/lib/Providers";
 import SideNavigationBar from "@/components/common/SideNavigationBar";
 import NavigationBar from "@/components/common/NavigationBar";
 import PrivateRoute from "@/lib/PrivateRoute";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,9 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <div className={inter.className}>
-        <PrivateRoute>
-          <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+    <div className={inter.className}>
+      <PrivateRoute>
+        {/* <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
             <div className="hidden border-r bg-muted/40 md:block">
               <SideNavigationBar />
             </div>
@@ -34,8 +33,19 @@ export default function RootLayout({
                 {children}
               </section>
             </div>
+          </div> */}
+        <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+          <div className="hidden border-r bg-muted/40 md:block">
+            <SideNavigationBar />
           </div>
-        </PrivateRoute>
-      </div>
+          <div className="flex flex-col">
+              <NavigationBar />
+              <section className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+                {children}
+              </section>
+            </div>
+        </div>
+      </PrivateRoute>
+    </div>
   );
 }
