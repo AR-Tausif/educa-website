@@ -38,6 +38,8 @@ import {
 } from "../ui/alert-dialog";
 import { useGetDueStudentPaymentByClassAndStudentIdQuery } from "@/redux/features/student-payment/studentPaymentApi";
 import StudentPaymentStatusDialogBox from "./StudentPaymentStatusDialogBox";
+import TableBodyRow from "./TableBodyRow";
+import { TStudent } from "@/types/student";
 
 const StudentsTable = () => {
   const { data, isLoading } = useGetAllStudentQuery("");
@@ -84,23 +86,33 @@ const StudentsTable = () => {
   }
   return (
     <>
-      <Table>
-        <TableCaption>A list of your recent User.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead>S.L</TableHead>
-
-            <TableHead>Student Name</TableHead>
-            <TableHead>{"Father's Name"}</TableHead>
-            <TableHead>Gender</TableHead>
-            <TableHead>Details</TableHead>
-            <TableHead>Payment</TableHead>
-            <TableHead>Delete</TableHead>
+      <Table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <TableCaption>A list of your students</TableCaption>
+        <TableHeader className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <TableRow className="font-bold">
+            <TableHead scope="col" className="px-6 py-3">
+              student name
+            </TableHead>
+            <TableHead scope="col" className="px-6 py-3">
+              Class
+            </TableHead>
+            <TableHead scope="col" className="px-6 py-3">
+              Status
+            </TableHead>
+            <TableHead scope="col" className="px-6 py-3">
+              Gender
+            </TableHead>
+            <TableHead scope="col" className="px-6 py-3">
+              <span className="sr-only">Edit</span>
+            </TableHead>
           </TableRow>
         </TableHeader>
 
         <TableBody>
-          {data?.data.map((invoice: any, index: number) => (
+          {data?.data.map((student: TStudent, index: number) => (
+            <TableBodyRow  student={student} key={index} />
+          ))}
+          {/* {data?.data.map((invoice: any, index: number) => (
             <TableRow key={invoice._id} className="text-start">
               <TableCell className=" border-blue-600 border-b-4 border-t-4 border-s-4 border-r-2 text-xl">
                 <Checkbox id="terms" className="mr-3" />
@@ -128,7 +140,13 @@ const StudentsTable = () => {
                   <DialogTrigger asChild>
                     <Button>Pay Now</Button>
                   </DialogTrigger>
-                  <StudentPaymentStatusDialogBox classId={invoice?.class?.name} studentId={invoice._id} name={invoice.studentName} fatherName={invoice.fatherName} motherName={invoice.motherName} />
+                  <StudentPaymentStatusDialogBox
+                    classId={invoice?.class?.name}
+                    studentId={invoice._id}
+                    name={invoice.studentName}
+                    fatherName={invoice.fatherName}
+                    motherName={invoice.motherName}
+                  />
                 </Dialog>
               </TableCell>
 
@@ -160,7 +178,9 @@ const StudentsTable = () => {
                 </AlertDialog>
               </TableCell>
             </TableRow>
-          ))}
+          ))} */}
+
+
         </TableBody>
       </Table>
     </>
