@@ -43,19 +43,11 @@ import { TStudent } from "@/types/student";
 
 const StudentsTable = () => {
   const { data, isLoading } = useGetAllStudentQuery("");
-  const [deleteStudentById] = useDeleteStudentByIdMutation();
+ 
 
   const router = useRouter();
   console.log(data);
-  const handleDelete = async (_id: string) => {
-    console.log("delete");
-    try {
-      const res = await deleteStudentById(_id);
-      console.log("delete student ==>", res);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  
 
   if (isLoading) {
     return (
@@ -110,7 +102,7 @@ const StudentsTable = () => {
 
         <TableBody>
           {data?.data.map((student: TStudent, index: number) => (
-            <TableBodyRow  student={student} key={index} />
+            <TableBodyRow   key={index} student={student} />
           ))}
           {/* {data?.data.map((invoice: any, index: number) => (
             <TableRow key={invoice._id} className="text-start">

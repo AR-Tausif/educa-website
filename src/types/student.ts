@@ -3,6 +3,7 @@ export type TReligion = "male" | "Female";
 export type TClass = { _id: string; name: string };
 
 export type TStudent = {
+  _id:string;
   classRoll: number;
   studentName: string;
   dateOfBirth: string;

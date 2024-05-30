@@ -1,10 +1,6 @@
 import { TStudent } from "@/types/student";
 import { TableCell, TableRow } from "../ui/table";
-import {
-  BadgeDollarSign,
-  SquareGanttChart,
-  Trash2,
-} from "lucide-react";
+import { BadgeDollarSign, SquareGanttChart, Trash2 } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -12,6 +8,7 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 import { Button } from "../ui/button";
+import StudentDeleteBtn from "../common/StudentDeleteBtn";
 
 const TableBodyRow = ({ student }: { student: TStudent }) => {
   return (
@@ -40,23 +37,8 @@ const TableBodyRow = ({ student }: { student: TStudent }) => {
       <TableCell className="px-6">{student?.gender}</TableCell>
       <TableCell className="px-6 text-right">
         <div className="flex flex-row-reverse gap-2 ">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="text-red-300 rounded-full p-2 hover:text-red-600"
-                >
-                  {/* <p className=" text-red-300 p-2 hover:bg-muted rounded-full"> */}
-                  <Trash2 size={23} />
-                  {/* </p> */}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p className="text-red-500">Delete</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <StudentDeleteBtn studentId={student._id} />
+
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
