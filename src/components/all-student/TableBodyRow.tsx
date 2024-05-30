@@ -1,6 +1,17 @@
 import { TStudent } from "@/types/student";
 import { TableCell, TableRow } from "../ui/table";
-import { Eye, FilePenLine, SquareGanttChart, Trash2 } from "lucide-react";
+import {
+  BadgeDollarSign,
+  SquareGanttChart,
+  Trash2,
+} from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
+import { Button } from "../ui/button";
 
 const TableBodyRow = ({ student }: { student: TStudent }) => {
   return (
@@ -28,23 +39,58 @@ const TableBodyRow = ({ student }: { student: TStudent }) => {
       </TableCell>
       <TableCell className="px-6">{student?.gender}</TableCell>
       <TableCell className="px-6 text-right">
-        {/* <a
-          href="#"
-          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-        >
-          Edit
-        </a> */}
         <div className="flex flex-row-reverse gap-2 ">
-          
-          <p className=" text-red-300 p-2 hover:bg-muted rounded-full">
-          <Trash2 size={23} />
-          </p>
-          <p className=" text-green-300 p-2 hover:bg-muted rounded-full">
-            <FilePenLine size={23} />
-          </p>
-          <p className=" text-gray-500 p-2 hover:bg-muted rounded-full">
-          <SquareGanttChart size={23} />
-          </p>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="text-red-300 rounded-full p-2 hover:text-red-600"
+                >
+                  {/* <p className=" text-red-300 p-2 hover:bg-muted rounded-full"> */}
+                  <Trash2 size={23} />
+                  {/* </p> */}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="text-red-500">Delete</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="text-green-300 rounded-full p-2 hover:text-green-600"
+                >
+                  {/* <p className=" text-red-300 p-2 hover:bg-muted rounded-full"> */}
+                  <BadgeDollarSign size={23} />
+                  {/* </p> */}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="text-green-500">Payment</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="text-gray-500 rounded-full p-2 hover:text-gray-600"
+                >
+                  {/* <p className=" text-green-300 p-2 hover:bg-muted rounded-full"> */}
+                  <SquareGanttChart size={23} />
+                  {/* </p> */}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="text-gray-700">View</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </TableCell>
     </TableRow>
