@@ -1,0 +1,19 @@
+.sectionTittle:after {
+  display: inline-block;
+  margin: 14px 5px 8px 20px;
+  height: 2px;
+  content: " ";
+  text-shadow: none;
+  background-color: #24a0d1;
+  width: 140px;
+}
+
+.sectionTittle:before {
+  display: inline-block;
+  margin: 14px 12px 8px 20px;
+  height: 3px;
+  content: " ";
+  text-shadow: none;
+  background-color: #24a0d1;
+  width: 140px;
+}
