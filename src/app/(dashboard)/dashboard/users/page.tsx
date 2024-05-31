@@ -9,17 +9,16 @@ import {
 } from "@/components/ui/table";
 
 import UsersTable from "@/components/user/UsersTable";
+import FormHeadingContent from "@/components/FormHeadingContent";
 
 const AllUsers = () => {
   return (
     <div className="h-screen">
-      <h1 className="text-center text-black font-bold text-2xl underline">
-        All User Information
-      </h1>
+      <FormHeadingContent title="Available users" desc="Here listed all users from our server." csName="text-center pb-5" />
 
-      <Table>
+      <Table className="border rounded-md">
         <TableCaption>A list of your recent User.</TableCaption>
-        <TableHeader>
+        <TableHeader className="bg-muted">
           <TableRow>
             <TableHead>S.L</TableHead>
 
@@ -27,7 +26,7 @@ const AllUsers = () => {
             <TableHead>User Email</TableHead>
             <TableHead>Role</TableHead>
             <TableHead>Promotion</TableHead>
-            <TableHead>block</TableHead>
+            <TableHead>Block</TableHead>
             <TableHead>Delete</TableHead>
           </TableRow>
         </TableHeader>

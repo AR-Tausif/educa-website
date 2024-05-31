@@ -13,6 +13,7 @@ const AllClassPage = () => {
         csName="text-center"
         csTitle="text-lg"
         title="Available class"
+        desc="Classes available in Educa International School."
       />
 
       <div className="grid grid-cols-3 py-6 gap-5">

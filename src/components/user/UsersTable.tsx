@@ -1,7 +1,7 @@
 "use client";
 
 import {
-    useBlockingUserByIdMutation,
+  useBlockingUserByIdMutation,
   useDeleteUserByIdMutation,
   useGetAllUserQuery,
   useMakeAdminUserByIdMutation,
@@ -28,16 +28,14 @@ import { Badge } from "../ui/badge";
 import { TUser } from "@/types/user.type";
 
 const UsersTable = () => {
-  const { data:allUser } = useGetAllUserQuery(undefined);
+  const { data: allUser } = useGetAllUserQuery(undefined);
   const [deleteUserById] = useDeleteUserByIdMutation();
   const [blockingUserById] = useBlockingUserByIdMutation();
   const [makeAdminUserById] = useMakeAdminUserByIdMutation();
 
   const handleDelete = async (_id: string) => {
-    console.log("delete");
     try {
       const res = await deleteUserById(_id);
-      console.log("delete student ==>", res);
     } catch (err) {
       console.log(err);
     }
@@ -46,7 +44,6 @@ const UsersTable = () => {
     console.log("delete");
     try {
       const res = await blockingUserById(_id);
-      console.log("delete student ==>", res);
     } catch (err) {
       console.log(err);
     }
@@ -55,7 +52,6 @@ const UsersTable = () => {
     console.log("delete");
     try {
       const res = await makeAdminUserById(_id);
-      console.log("delete student ==>", res);
     } catch (err) {
       console.log(err);
     }
@@ -63,31 +59,25 @@ const UsersTable = () => {
 
   return (
     <>
-      {allUser?.data.map((user:TUser , index:number) => (
+      {allUser?.data.map((user: TUser, index: number) => (
         <TableRow key={user._id}>
-          <TableCell className=" border-blue-600 border-b-4 border-t-4 border-s-4 border-r-2 text-xl">
+          <TableCell className="text-xl">
             <Checkbox id="terms" className="mr-3" />
             {index + 1}
           </TableCell>
 
-          <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4">
-            {user.fullName}
-          </TableCell>
-          <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4">
-            {user.email}
+          <TableCell className="font-medium ">{user.fullName}</TableCell>
+          <TableCell className="font-medium ">{user.email}</TableCell>
+
+          <TableCell className="font-medium ">
+            {user.role == "admin" ? (
+              <Badge className="bg-green-600">{user.role}</Badge>
+            ) : (
+              <Badge variant="outline">{user.role}</Badge>
+            )}
           </TableCell>
 
-          <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4">
-            {
-                user.role==  "admin" ? <Badge className="bg-green-600">
-                {user.role}
-                </Badge> : <Badge variant="outline">
-            {user.role}
-            </Badge> 
-            }
-          </TableCell>
-
-          <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4  text-blue-500">
+          <TableCell className="font-medium">
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <FaEdit className="text-2xl" />
@@ -100,17 +90,21 @@ const UsersTable = () => {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction
+                  {user.role == "admin" ? (<AlertDialogAction
+                    onClick={() => handleUserMakingAdmin(user._id)}
+                  >
+                    Make User
+                  </AlertDialogAction>) : (<AlertDialogAction
                     onClick={() => handleUserMakingAdmin(user._id)}
                   >
                     Make Admin
-                  </AlertDialogAction>
+                  </AlertDialogAction>)}
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
           </TableCell>
 
-          <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4  text-yellow-700">
+          <TableCell className="font-medium   text-yellow-700">
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <MdBlock className="text-2xl" />
@@ -133,7 +127,7 @@ const UsersTable = () => {
             </AlertDialog>
           </TableCell>
 
-          <TableCell className="font-medium  border-blue-600 border-b-4 border-t-4 border-r-4 text-xl text-red-500">
+          <TableCell className="font-medium text-xl text-red-500">
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <MdAutoDelete className="text-2xl" />
