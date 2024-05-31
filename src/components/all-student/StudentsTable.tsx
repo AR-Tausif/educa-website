@@ -78,7 +78,7 @@ const StudentsTable = () => {
   }
   return (
     <>
-      <Table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <Table className="w-full text-sm text-left rtl:text-right border rounded-lg text-gray-500 dark:text-gray-400">
         <TableCaption>A list of your students</TableCaption>
         <TableHeader className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <TableRow className="font-bold">
