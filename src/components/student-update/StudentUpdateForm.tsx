@@ -1,6 +1,5 @@
 "use client";
 
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -24,21 +23,30 @@ import {
 import { Input } from "../ui/input";
 import FormHeadingContent from "../FormHeadingContent";
 import { toast } from "sonner";
-import { useCreateStudentMutation, useGetStudentByStudentIdQuery, useUpdateStudentDataMutation } from "@/redux/features/student/createStudentApi";
+import {
+  useGetStudentByStudentIdQuery,
+  useUpdateStudentDataMutation,
+} from "@/redux/features/student/createStudentApi";
 import { useGetAllClassQuery } from "@/redux/features/class/createClasApi";
 import { useRouter } from "next/navigation";
 import { UpdateStudentFormSchema } from "@/lib/zod/updateStudentFormSchema";
 import { TResponse } from "@/types/global";
+import { Loader2 } from "lucide-react";
+import { APP_ROUTES } from "@/lib/utils";
 
-export default function UpdateStudentForm({studentId}:{studentId:string}) {
-  const {data:singleStudent, error:singleStudentError} = useGetStudentByStudentIdQuery(studentId);
+export default function UpdateStudentForm({
+  studentId,
+}: {
+  studentId: string;
+}) {
+  const { data: singleStudent, error: singleStudentError } =
+    useGetStudentByStudentIdQuery(studentId);
 
-  const router = useRouter()
-  console.log("single student: ", singleStudent)
-  console.log("errorsingle student: ", singleStudentError)
+  const router = useRouter();
 
-  const {data:allClass, error} = useGetAllClassQuery(undefined);
-  const [updateStudentData]= useUpdateStudentDataMutation()
+  const { data: allClass, error } = useGetAllClassQuery(undefined);
+  const [updateStudentData, { isLoading, isError }] =
+    useUpdateStudentDataMutation();
   const fieldGroupClasses =
     "grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-5";
   const form = useForm<z.infer<typeof UpdateStudentFormSchema>>({
@@ -46,18 +54,23 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
   });
 
   async function onSubmit(data: z.infer<typeof UpdateStudentFormSchema>) {
-
     try {
-      console.log("after update mutation: ", data)
-      const res = await updateStudentData({studentId: singleStudent.data._id, updatedData: data}) as TResponse;
-      console.log("mutation response",res);
-      if(res.error){
-        return toast.error(res.error.data.message as string);
+      const toastId = toast.loading("Updating data...");
+      const res = (await updateStudentData({
+        studentId: singleStudent.data._id,
+        updatedData: data,
+      })) as TResponse;
+
+      if (isError) {
+        return toast.error(
+          (res.error.data.message as string) || "Please try again",
+          { id: toastId }
+        );
       }
-      toast.success("Student updated successfully");
-      router.push(`/dashboard/all-students/${studentId}`)
-    } catch (err:any) {
-      toast.error(err.message as string | "Sorry,please try again" );
+      toast.success("Student updated successfully", { id: toastId });
+      router.push(`/${APP_ROUTES.ALL_STUDENT}/${studentId}`);
+    } catch (err: any) {
+      toast.error(err.message as string | "Sorry,please try again");
       console.log(err);
     }
   }
@@ -65,7 +78,6 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="full space-y-6">
-        <FormHeadingContent title="Student Information" />
         <div className={fieldGroupClasses}>
           <FormField
             control={form.control}
@@ -76,7 +88,10 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>Student Name</FormLabel>
 
                 <FormControl>
-                  <Input placeholder={singleStudent?.data?.studentName} {...field} />
+                  <Input
+                    placeholder={singleStudent?.data?.studentName}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -91,19 +106,27 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>Class</FormLabel>
                 <Select
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  defaultValue={singleStudent?.data?.class.name || field.value}
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder={singleStudent?.data?.class ? singleStudent?.data?.class : "Select a class"} />
+                      <SelectValue
+                        placeholder={
+                          singleStudent?.data?.class.name
+                            ? singleStudent?.data?.class.name
+                            : "Select a class"
+                        }
+                      />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent className="bg-white">
-                    {
-                      allClass?.data.map((classItem:{_id:string; name:string})=>(
-                        <SelectItem key={classItem._id} value={classItem._id}>{classItem.name}</SelectItem>
-                      ))
-                    }
+                    {allClass?.data.map(
+                      (classItem: { _id: string; name: string }) => (
+                        <SelectItem key={classItem._id} value={classItem._id}>
+                          {classItem.name}
+                        </SelectItem>
+                      )
+                    )}
                   </SelectContent>
                 </Select>
 
@@ -124,7 +147,13 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder={singleStudent?.data?.gender ? singleStudent?.data?.gender :"Gender"} />
+                      <SelectValue
+                        placeholder={
+                          singleStudent?.data?.gender
+                            ? singleStudent?.data?.gender
+                            : "Gender"
+                        }
+                      />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent className="bg-white">
@@ -164,7 +193,14 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>Religion</FormLabel>
 
                 <FormControl>
-                  <Input placeholder={singleStudent?.data?.religion ? singleStudent?.data?.religion :"Riligion"} {...field} />
+                  <Input
+                    placeholder={
+                      singleStudent?.data?.religion
+                        ? singleStudent?.data?.religion
+                        : "Riligion"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -179,7 +215,14 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>Place of Birth</FormLabel>
 
                 <FormControl>
-                  <Input placeholder={singleStudent?.data?.placeOfBirth ? singleStudent?.data?.placeOfBirth : "Place of birth"} {...field} />
+                  <Input
+                    placeholder={
+                      singleStudent?.data?.placeOfBirth
+                        ? singleStudent?.data?.placeOfBirth
+                        : "Place of birth"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -195,8 +238,11 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
 
                 <FormControl>
                   <Input
-                    placeholder={singleStudent?.data?.nationality ? singleStudent?.data?.nationality : "Country"}
-                    
+                    placeholder={
+                      singleStudent?.data?.nationality
+                        ? singleStudent?.data?.nationality
+                        : "Country"
+                    }
                     {...field}
                   />
                 </FormControl>
@@ -213,7 +259,14 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>First Language</FormLabel>
 
                 <FormControl>
-                  <Input placeholder={singleStudent?.data?.firstLanguage ? singleStudent?.data?.firstLanguage : "First Language"} {...field} />
+                  <Input
+                    placeholder={
+                      singleStudent?.data?.firstLanguage
+                        ? singleStudent?.data?.firstLanguage
+                        : "First Language"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -228,7 +281,14 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>Present Address</FormLabel>
 
                 <FormControl>
-                  <Input  placeholder={singleStudent?.data?.presentAddress ? singleStudent?.data?.presentAddress : "Present address"} {...field} />
+                  <Input
+                    placeholder={
+                      singleStudent?.data?.presentAddress
+                        ? singleStudent?.data?.presentAddress
+                        : "Present address"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -243,7 +303,14 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>Permanent address</FormLabel>
 
                 <FormControl>
-                  <Input placeholder={singleStudent?.data?.permanentAddress ? singleStudent?.data?.permanentAddress : "Permanent Address"} {...field} />
+                  <Input
+                    placeholder={
+                      singleStudent?.data?.permanentAddress
+                        ? singleStudent?.data?.permanentAddress
+                        : "Permanent Address"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -262,7 +329,15 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>{"Name"}</FormLabel>
 
                 <FormControl>
-                  <Input id="fatherName" placeholder={singleStudent?.data?.fatherName ? singleStudent?.data?.fatherName : "Father's Name"} {...field} />
+                  <Input
+                    id="fatherName"
+                    placeholder={
+                      singleStudent?.data?.fatherName
+                        ? singleStudent?.data?.fatherName
+                        : "Father's Name"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -276,7 +351,15 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
               <FormItem>
                 <FormLabel>{"Email"}</FormLabel>
                 <FormControl>
-                  <Input id="fatherEmail" placeholder={singleStudent?.data?.fatherEmail ? singleStudent?.data?.fatherEmail : "Father's email address"} {...field} />
+                  <Input
+                    id="fatherEmail"
+                    placeholder={
+                      singleStudent?.data?.fatherEmail
+                        ? singleStudent?.data?.fatherEmail
+                        : "Father's email address"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -292,7 +375,11 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormControl>
                   <Input
                     type="number"
-                    placeholder={singleStudent?.data?.fatherPhonNumber ? singleStudent?.data?.fatherPhonNumber : "Mobile number..."}
+                    placeholder={
+                      singleStudent?.data?.fatherPhonNumber
+                        ? singleStudent?.data?.fatherPhonNumber
+                        : "Mobile number..."
+                    }
                     {...field}
                   />
                 </FormControl>
@@ -308,7 +395,15 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
               <FormItem>
                 <FormLabel>ID</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder={singleStudent?.data?.fatherIDCardNumber ? singleStudent?.data?.fatherIDCardNumber : "ID number..."} {...field} />
+                  <Input
+                    type="number"
+                    placeholder={
+                      singleStudent?.data?.fatherIDCardNumber
+                        ? singleStudent?.data?.fatherIDCardNumber
+                        : "ID number..."
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -323,7 +418,14 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>Profession</FormLabel>
 
                 <FormControl>
-                  <Input placeholder={singleStudent?.data?.fatherProfession ? singleStudent?.data?.fatherProfession : "Profession"} {...field} />
+                  <Input
+                    placeholder={
+                      singleStudent?.data?.fatherProfession
+                        ? singleStudent?.data?.fatherProfession
+                        : "Profession"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -337,7 +439,14 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>Pesignation</FormLabel>
 
                 <FormControl>
-                  <Input placeholder={singleStudent?.data?.fatherPesignation ? singleStudent?.data?.fatherPesignation : "Pesignation"} {...field} />
+                  <Input
+                    placeholder={
+                      singleStudent?.data?.fatherPesignation
+                        ? singleStudent?.data?.fatherPesignation
+                        : "Pesignation"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -355,7 +464,14 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>{"Name"}</FormLabel>
 
                 <FormControl>
-                  <Input placeholder={singleStudent?.data?.motherName ? singleStudent?.data?.motherName : "Mother's Name"} {...field} />
+                  <Input
+                    placeholder={
+                      singleStudent?.data?.motherName
+                        ? singleStudent?.data?.motherName
+                        : "Mother's Name"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -369,7 +485,14 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
               <FormItem>
                 <FormLabel>{"Email"}</FormLabel>
                 <FormControl>
-                  <Input placeholder={singleStudent?.data?.motherEmail ? singleStudent?.data?.motherEmail : "Mother's email address"} {...field} />
+                  <Input
+                    placeholder={
+                      singleStudent?.data?.motherEmail
+                        ? singleStudent?.data?.motherEmail
+                        : "Mother's email address"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -385,7 +508,11 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormControl>
                   <Input
                     type="number"
-                    placeholder={singleStudent?.data?.motherPhonNumber ? singleStudent?.data?.motherPhonNumber : "Mobile number..."}
+                    placeholder={
+                      singleStudent?.data?.motherPhonNumber
+                        ? singleStudent?.data?.motherPhonNumber
+                        : "Mobile number..."
+                    }
                     {...field}
                   />
                 </FormControl>
@@ -401,7 +528,15 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
               <FormItem>
                 <FormLabel>ID</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder={singleStudent?.data?.motherIDCardNumber ? singleStudent?.data?.motherIDCardNumber : "ID number..."} {...field} />
+                  <Input
+                    type="number"
+                    placeholder={
+                      singleStudent?.data?.motherIDCardNumber
+                        ? singleStudent?.data?.motherIDCardNumber
+                        : "ID number..."
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -416,7 +551,14 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>Profession</FormLabel>
 
                 <FormControl>
-                  <Input placeholder={singleStudent?.data?.motherProfession ? singleStudent?.data?.motherProfession : "Profession"} {...field} />
+                  <Input
+                    placeholder={
+                      singleStudent?.data?.motherProfession
+                        ? singleStudent?.data?.motherProfession
+                        : "Profession"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -430,7 +572,14 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
                 <FormLabel>Pesignation</FormLabel>
 
                 <FormControl>
-                  <Input placeholder={singleStudent?.data?.motherPesignation ? singleStudent?.data?.motherPesignation : "Pesignation"} {...field} />
+                  <Input
+                    placeholder={
+                      singleStudent?.data?.motherPesignation
+                        ? singleStudent?.data?.motherPesignation
+                        : "Pesignation"
+                    }
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -440,9 +589,16 @@ export default function UpdateStudentForm({studentId}:{studentId:string}) {
 
         <div className="flex flex-row-reverse">
           <div className="">
-            <Button className="mr-auto" type="submit">
-              Update
-            </Button>
+            {isLoading ? (
+              <Button disabled>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Please wait
+              </Button>
+            ) : (
+              <Button className="mr-auto" type="submit">
+                Update
+              </Button>
+            )}
           </div>
         </div>
       </form>
