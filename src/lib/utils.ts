@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 
 export const APP_ROUTES = {
-  REGISTER: "register",
+  REGISTER: "sign-up",
   LOGIN: "login",
   DASHBOARD: "dashboard",
   CREATE_CLASS: "dashboard/create-class",

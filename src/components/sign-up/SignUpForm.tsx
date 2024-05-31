@@ -23,9 +23,11 @@ import { redirect } from "next/navigation";
 import { APP_ROUTES } from "@/lib/utils";
 import { toast } from "sonner";
 import { SignUpUserFormSchema } from "@/lib/zod/signUpUserFormSchema";
+import Link from "next/link";
+import { Loader2 } from "lucide-react";
 
 export default function SignUpForm() {
-  const [register, { data, error }] = useRegisterMutation();
+  const [register, { data, error, isLoading }] = useRegisterMutation();
   const dispatch = useDispatch();   
    const router = useRouter();
 
@@ -124,10 +126,23 @@ export default function SignUpForm() {
             )}
           />
         </div>
-        <Button type="submit" className="w-full">
-          Sign in
-        </Button>
+        {isLoading ? (
+          <Button disabled>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Please wait
+          </Button>
+        ) : (
+          <Button type="submit" className="w-full">
+            Sign Up
+          </Button>
+        )}
       </form>
+      <div className="mt-4 text-center text-sm">
+          Already have an account?{" "}
+          <Link href={`/${APP_ROUTES.LOGIN}`} className="underline">
+            Login
+          </Link>
+        </div>
     </Form>
   );
 }

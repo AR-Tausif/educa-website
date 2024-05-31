@@ -1,3 +1,4 @@
+import FormHeadingContent from "@/components/FormHeadingContent";
 import GetAllClassFromDB from "@/components/class/GetAllClassFromDB";
 import CreateClassModalForm from "@/components/common/CreateClassModalForm";
 
@@ -8,9 +9,18 @@ import React from "react";
 const AllClassPage = () => {
   return (
     <div>
+      <FormHeadingContent
+        csName="text-center"
+        csTitle="text-lg"
+        title="Available class"
+      />
+
+      <div className="grid grid-cols-3 py-6 gap-5">
+        <GetAllClassFromDB />
+      </div>
       <Dialog>
         <div
-          className="flex py-4 flex-1 items-end justify-end rounded-lg "
+          className="flex py-4 flex-1 items-end justify-center rounded-lg"
           x-chunk="dashboard-02-chunk-1"
         >
           <div className="flex flex-col items-center gap-1 text-center">
@@ -21,11 +31,6 @@ const AllClassPage = () => {
         </div>
         <CreateClassModalForm />
       </Dialog>
-
-      <h1 className="text-center font-bold text-2xl underline">All Class</h1>
-      <div className="grid grid-cols-2 py-6 gap-5">
-        <GetAllClassFromDB />
-      </div>
     </div>
   );
 };

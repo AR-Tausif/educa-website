@@ -22,11 +22,13 @@ import { VerifyToken } from "@/lib/VerifyToken";
 import { redirect } from "next/navigation";
 import { APP_ROUTES } from "@/lib/utils";
 import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
+import Link from "next/link";
 
 export default function LoginForm() {
-  const [login, { data, error }] = useLoginMutation();
-  const dispatch = useDispatch();   
-   const router = useRouter();
+  const [login, { data, error, isLoading }] = useLoginMutation();
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   console.log("Login data: ==>", data);
   console.log("Login error: ==>", error);
@@ -39,18 +41,17 @@ export default function LoginForm() {
       email: data.email,
       password: data.password,
     };
-    const toastId = toast.loading("Please wait for moments")
+    const toastId = toast.loading("Please wait for moments");
     try {
-      const loginResponse:any= await login(userInfo).unwrap();
+      const loginResponse: any = await login(userInfo).unwrap();
       console.log(loginResponse);
       const user = VerifyToken(loginResponse.data.accessToken);
-      dispatch(setUser({ user, token: loginResponse.data.accessToken }));      
+      dispatch(setUser({ user, token: loginResponse.data.accessToken }));
       router.push("/dashboard");
-      toast.success(loginResponse.message,{id:toastId})
-      
+      toast.success(loginResponse.message, { id: toastId });
     } catch (error) {
-      console.log(error)
-      toast.error("Something went wrong!", {id:toastId})
+      console.log(error);
+      toast.error("Something went wrong!", { id: toastId });
     }
   }
   return (
@@ -92,10 +93,23 @@ export default function LoginForm() {
             )}
           />
         </div>
-        <Button type="submit" className="w-full">
-          Sign in
-        </Button>
+        {isLoading ? (
+          <Button disabled>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Please wait
+          </Button>
+        ) : (
+          <Button type="submit" className="w-full">
+            Sign in
+          </Button>
+        )}
       </form>
+      <div className="mt-4 text-center text-sm">
+          Don&apos;t have an account?{" "}
+          <Link href={`/${APP_ROUTES.REGISTER}`} className="underline">
+            Sign up
+          </Link>
+        </div>
     </Form>
   );
 }

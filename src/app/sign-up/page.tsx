@@ -8,9 +8,9 @@ const SingUp = () => {
     <div className="flex justify-center min-h-screen items-center">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardTitle className="text-2xl">Sign Up</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account.
+            Enter your email and Info below to create account.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
