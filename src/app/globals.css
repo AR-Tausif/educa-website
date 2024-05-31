@@ -75,3 +75,26 @@
     overflow:auto !important;
   }
 }
+
+
+
+.pie-chart {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  clip-path: circle(50%);
+}
+
+.slice {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(50% 50%, 100% 0, 100% 100%);
+  transform-origin: 50% 50%;
+}
+
+.slice-1 { background: #f87171; transform: rotate(0deg) skewY(-45deg); }
+.slice-2 { background: #60a5fa; transform: rotate(90deg) skewY(-45deg); }
+.slice-3 { background: #34d399; transform: rotate(180deg) skewY(-45deg); }
+.slice-4 { background: #fbbf24; transform: rotate(270deg) skewY(-45deg); }
