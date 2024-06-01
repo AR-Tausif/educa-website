@@ -23,7 +23,8 @@ const PaymentHistoryReceipt = ({ singlePayInfo, studentName }: TProps) => {
   const academicInputDatas = paymentInfo as Record<string, number>;
 
   // Exclude certain fields
-  const { discountOnFees: _, cashCollection: __, ...fees } = academicInputDatas;
+  const { discountOnFees: _, cashCollection: __, class:___, student:____, studentPayment: _____, createdAt, updatedAt,  ...fees } = academicInputDatas;
+  console.log(fees)
 
     const feesArray = Object.keys(fees)
     const totalFees = feesArray.reduce((sum, key) => sum + (fees[key] || 0), 0);
@@ -43,7 +44,7 @@ const PaymentHistoryReceipt = ({ singlePayInfo, studentName }: TProps) => {
                     <div>
                         <p>
                             {/* TODO: Class key changing */}
-                            Class: <strong> {singlePayInfo?.class?.name.toUpperCase()}</strong>
+                            Class: <strong> {studentClass?.name?.toUpperCase()}</strong>
                         </p>
                     </div>
                 </div>
