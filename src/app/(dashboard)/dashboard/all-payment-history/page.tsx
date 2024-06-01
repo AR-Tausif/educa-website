@@ -15,6 +15,8 @@ import { IoEye } from "react-icons/io5";
 import { FaPrint } from "react-icons/fa";
 
 import { Checkbox } from "@/components/ui/checkbox";
+import FormHeadingContent from "@/components/FormHeadingContent";
+import AllPaymentHistoryTableRow from "@/components/payment/AllPaymentHistoryTableRow";
 
 const invoices = [
   {
@@ -57,13 +59,11 @@ const invoices = [
 const AllPaymentHistoryPage = () => {
   return (
     <div className="h-screen">
-      <h1 className="text-center text-black font-bold text-2xl">
-        All Students
-      </h1>
+      <FormHeadingContent title="All payment history" desc="Here listed all payment histories from our server." csName="text-center pb-5" />
 
       <Table>
         <TableCaption>A list of your recent Students.</TableCaption>
-        <TableHeader>
+        <TableHeader className="bg-muted">
           <TableRow>
             <TableHead>S.L</TableHead>
             <TableHead>Name</TableHead>
@@ -75,37 +75,7 @@ const AllPaymentHistoryPage = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {invoices.map((invoice, index) => (
-            <TableRow key={invoice.StudentName}>
-              <TableCell className=" border-blue-600 border-b-4 border-t-4 border-s-4 border-r-2 text-xl">
-                <Checkbox id="terms" className="mr-3" />
-                {index + 1}
-              </TableCell>
-
-              <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4">
-                {invoice.StudentName}
-              </TableCell>
-              <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4">
-                {invoice.ClassName}
-              </TableCell>
-
-              <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4 text-purple-700">
-                {invoice.Date}
-              </TableCell>
-
-              <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4  text-black">
-                <IoEye className="text-2xl" />
-              </TableCell>
-
-              <TableCell className="font-medium   border-blue-600 border-t-4 border-b-4  text-blue-500">
-                <FaPrint className="text-2xl" />
-              </TableCell>
-
-              <TableCell className="font-medium  border-blue-600 border-b-4 border-t-4 border-r-4 text-xl text-red-500">
-                <FaArrowAltCircleDown className="text-2xl text-center ms-5 " />
-              </TableCell>
-            </TableRow>
-          ))}
+          <AllPaymentHistoryTableRow/>
         </TableBody>
       </Table>
     </div>

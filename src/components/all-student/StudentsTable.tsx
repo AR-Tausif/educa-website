@@ -10,34 +10,12 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { MdAutoDelete } from "react-icons/md";
 import {
-  useDeleteStudentByIdMutation,
   useGetAllStudentQuery,
 } from "@/redux/features/student/createStudentApi";
-import { IoEye } from "react-icons/io5";
+
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog";
-import { Button } from "../ui/button";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "../ui/alert-dialog";
-import { useGetDueStudentPaymentByClassAndStudentIdQuery } from "@/redux/features/student-payment/studentPaymentApi";
-import StudentPaymentStatusDialogBox from "./StudentPaymentStatusDialogBox";
+
 import TableBodyRow from "./TableBodyRow";
 import { TStudent } from "@/types/student";
 

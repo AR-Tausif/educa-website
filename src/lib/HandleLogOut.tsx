@@ -2,13 +2,16 @@
 
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { logOut } from "@/redux/features/auth/authSlice"
+import { useAppDispatch } from "@/redux/hooks";
 
 const HandleLogOut = () => {
+  const dispatch = useAppDispatch();
+
     const handleLogOut = ()=>{
-        logOut()
+        dispatch(logOut())
       }
   return (
-    <DropdownMenuItem onClick={handleLogOut}>Logout</DropdownMenuItem>
+    <DropdownMenuItem onClick={handleLogOut}>Log Out</DropdownMenuItem>
   )
 }
 

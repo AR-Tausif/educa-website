@@ -1,3 +1,5 @@
+import { TClass, TStudent } from "./student";
+
 type TFees = {
   yearlyMonthFees: number;
   admissionFees: number;
@@ -48,4 +50,28 @@ export type TSinglePayInfo = {
   tie: number;
   yearlyMonthFees: number;
   _id: string;
+};
+
+
+
+
+export type TPaymentHistory = {
+  _id:string;
+  student: Partial<TStudent>;
+  class: TClass;
+  studentPayment: string;
+  year: number;
+  date: Date;
+  admissionFees: number;
+  reAdmissionFees: number;
+  yearlyMonthFees: number;
+  books: number;
+  picnicFees: number;
+  idCard: number;
+  examFees: number;
+  stationeries: number;
+  studyTour: number;
+  tie: number;
+  discountOnFees: number;
+  cashCollection: number;
 };
