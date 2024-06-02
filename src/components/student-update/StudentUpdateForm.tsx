@@ -63,7 +63,7 @@ export default function UpdateStudentForm({
 
       if (isError) {
         return toast.error(
-          (res.error.data.message as string) || "Please try again",
+          (res?.error?.data.message as string) || "Please try again",
           { id: toastId }
         );
       }

@@ -1,8 +1,4 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/3WHX49SGIxk
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+
 import { TPaymentHistory, TSinglePayInfo } from "@/types/payment.type";
 import PaymentHistoryReceipt from "./PaymentHistoryReceipt";
 

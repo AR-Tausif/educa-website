@@ -1,13 +1,10 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/3WHX49SGIxk
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+
 import { Checkbox } from "@/components/ui/checkbox";
 import PaymentReceiptDetails from "./PaymentReceiptDetails";
 import { TSinglePayInfo } from "@/types/payment.type";
+import { MutableRefObject } from "react";
 
-export default function SingleStudentReceipt({singlePayInfo, studentDetail, targetRef}:{singlePayInfo:TSinglePayInfo, studentDetail:any}) {
+export default function SingleStudentReceipt({singlePayInfo, studentDetail, targetRef}:{singlePayInfo:TSinglePayInfo, studentDetail:any, targetRef: MutableRefObject<any>}) {
 
   return (
     <div ref={targetRef} className="bg-white p-8 max-w-4xl mx-auto my-12 border rounded-md shadow-lg">
