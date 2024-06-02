@@ -6,9 +6,15 @@ import SectionTitle from "./SectionTitle";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
@@ -17,20 +23,35 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 import {
   Bell,
+  ChevronDown,
   CircleUser,
+  Cloud,
+  CreditCard,
+  Github,
   Home,
+  Keyboard,
+  LifeBuoy,
   LineChart,
+  LogOut,
+  Mail,
   Menu,
+  MessageSquare,
   Package,
   Package2,
+  Plus,
+  PlusCircle,
   Search,
+  Settings,
   ShoppingCart,
+  User,
+  UserPlus,
   Users,
 } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { logOut } from "@/redux/features/auth/authSlice";
 
 import HandleLogOut from "@/lib/HandleLogOut";
+import { routes } from "./SideNavigationBar";
 
 const NavigationBar = () => {
   return (
@@ -49,70 +70,17 @@ const NavigationBar = () => {
           </SheetTrigger>
           <SheetContent side="left" className="flex flex-col w-96">
             <ScrollArea className="p-2 ">
-              <nav className="grid gap-2 text-lg font-medium w-40 mx-auto">
-                <Link
-                  href="/dashboard"
-                  className="flex  items-center  gap-2 text-lg font-semibold"
-                >
-                  <Package2 className="h-6 w-6" />
-                  <span className="text-blue-600">EDUCA</span>
-                </Link>
-
-                <Link
-                  href="/dashboard/all-class"
-                  className="mx-[-0.65rem] flex items-center gap-4 bg-blue-500 mt-6 text-white font-bold text-center rounded-full  px-3 py-2 text-muted-foreground hover:text-foreground"
-                >
-                  <Home className="h-5 w-5" />
-                  Dashboard
-                </Link>
-
-                <Link
-                  href="/dashboard/all-class"
-                  className="mx-[-0.65rem] flex items-center gap-4 bg-blue-500 mt-6 text-white font-bold text-center rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-                >
-                  <Home className="h-5 w-5" />
-                  All Class
-                </Link>
-
-                <Link
-                  href="/dashboard/all-students"
-                  className="mx-[-0.65rem] flex items-center gap-4 bg-blue-500 mt-6 text-white font-bold text-center rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-                >
-                  <Package className="h-5 w-5" />
-                  All Student
-                </Link>
-
-                <Link
-                  href="/dashboard/users"
-                  className="mx-[-0.65rem] flex items-center gap-4 bg-blue-500 mt-6 text-white font-bold text-center rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-                >
-                  <Users className="h-5 w-5" />
-                  Users
-                </Link>
-
-                <Link
-                  href="/dashboard/all-payment-history"
-                  className="mx-[-0.65rem] flex items-center gap-4 bg-blue-500 mt-6 text-white font-bold text-center rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-                >
-                  <LineChart className="h-5 w-5" />
-                  Payment History
-                </Link>
-
-                <Link
-                  href="/dashboard/add-student"
-                  className="mx-[-0.65rem] flex items-center gap-4 bg-blue-500 mt-6 text-white font-bold text-center rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-                >
-                  <LineChart className="h-5 w-5" />
-                  Add Student
-                </Link>
-
-                <Link
-                  href="/dashboard/all-payment-history"
-                  className="mx-[-0.65rem] flex items-center gap-4 bg-blue-500 mt-6 text-white font-bold text-center rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-                >
-                  <LineChart className="h-5 w-5" />
-                  Class Student
-                </Link>
+              <nav className="font-medium">
+              {routes.map((route) => (
+              <Link
+                key={route.path}
+                href={route.path}
+                className="flex mt-2 items-center gap-3 rounded-lg hover:bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+              >
+                <route.icon className="h-4 w-4" />
+                <p className="text-sm">{route.title} </p>
+              </Link>
+            ))}
               </nav>
             </ScrollArea>
           </SheetContent>
@@ -129,15 +97,97 @@ const NavigationBar = () => {
             </div>
           </form>
         </div>
+        <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
+            <Bell className="h-4 w-4" />
+            <span className="sr-only">Toggle notifications</span>
+          </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="secondary" size="icon" className="rounded-full">
+          <div className="flex gap-2 items-center rounded-md border pr-2">
+          <Button variant="secondary" size="icon" className="rounded-md">
               <CircleUser className="h-5 w-5" />
               <span className="sr-only">Toggle user menu</span>
             </Button>
+            <ChevronDown className="h-5 w-5"/>
+          </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <HandleLogOut />
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <User className="mr-2 h-4 w-4" />
+                <span>Profile</span>
+                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <CreditCard className="mr-2 h-4 w-4" />
+                <span>Billing</span>
+                <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Settings className="mr-2 h-4 w-4" />
+                <span>Settings</span>
+                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Keyboard className="mr-2 h-4 w-4" />
+                <span>Keyboard shortcuts</span>
+                <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <Users className="mr-2 h-4 w-4" />
+                <span>Team</span>
+              </DropdownMenuItem>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>
+                  <UserPlus className="mr-2 h-4 w-4" />
+                  <span>Invite users</span>
+                </DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>
+                      <Mail className="mr-2 h-4 w-4" />
+                      <span>Email</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <MessageSquare className="mr-2 h-4 w-4" />
+                      <span>Message</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                      <PlusCircle className="mr-2 h-4 w-4" />
+                      <span>More...</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
+              <DropdownMenuItem>
+                <Plus className="mr-2 h-4 w-4" />
+                <span>New Team</span>
+                <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Github className="mr-2 h-4 w-4" />
+              <a href="https://github.com/AR-Tausif" target="_blank">
+              <span>GitHub</span>
+              </a>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <LifeBuoy className="mr-2 h-4 w-4" />
+              <span>Support</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem disabled>
+              <Cloud className="mr-2 h-4 w-4" />
+              <span>API</span>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <HandleLogOut/>
           </DropdownMenuContent>
         </DropdownMenu>
       </header>

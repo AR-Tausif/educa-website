@@ -31,6 +31,13 @@ const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["users"],
     }),
+    getCountingDocs: builder.query({
+      query: () => ({
+        url: `/user/counting-document`,
+        method: "GET",
+      }),
+      providesTags: ["users"],
+    }),
   }),
 });
 
@@ -38,6 +45,6 @@ export const {
   useGetAllUserQuery,
   useDeleteUserByIdMutation,
   useBlockingUserByIdMutation,
-  useMakeAdminUserByIdMutation
-  
+  useMakeAdminUserByIdMutation,
+  useGetCountingDocsQuery,
 } = authApi;
