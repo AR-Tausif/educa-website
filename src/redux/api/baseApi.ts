@@ -3,8 +3,8 @@ import { RootState } from "../store";
 
 // Define a service using a base URL and expected endpoints
 
-export const baseURL = "http://localhost:5000/api/v1";
-// export const baseURL = "https://eisserver-samimhossainsujon-samimhossainsujons-projects.vercel.app/";
+//export const baseURL = "http://localhost:5000/api/v1";
+ export const baseURL = "https://educa-international-school-server.vercel.app";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   tagTypes: ["classes", "students", "singleStudent", "users"],
