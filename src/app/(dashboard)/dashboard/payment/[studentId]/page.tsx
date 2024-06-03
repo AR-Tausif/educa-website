@@ -78,7 +78,8 @@ const SinglePaymentPage = ({ params }: { params: { studentId: string } }) => {
     (stdPayDueData?.data?.totalDue || 0) + (presentInputTotal || 0);
 
   const handleOnchangeField = (e: FormEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const target = e.target as HTMLInputElement;
+    const { name, value } = target;
     setFormData({
       ...formData,
       [name]: parseInt(value),

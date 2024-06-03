@@ -8,9 +8,17 @@ type TProps = {singlePayInfo:TSinglePayInfo, studentDetail:TStudent}
 
 const PaymentReceiptDetails = ({singlePayInfo, studentDetail}:TProps) => {
 
-  const { _id, discountOnFees, date,  cashCollection, ...paymentInfo } = singlePayInfo;
-  console.table(studentDetail)
-    const  feesArray= Object.keys(paymentInfo)
+
+  const { _id, discountOnFees, date, cashCollection, createdAt, updatedAt, ...paymentInfo } = singlePayInfo;
+  // Type assertion for paymentInfo
+  const academicInputDatas = paymentInfo as Record<string, number>;
+
+  // Exclude certain fields
+  const { discountOnFees: _, cashCollection: __, class:___, student:____, studentPayment: _____, ...fees } = academicInputDatas;
+
+  const feesArray = Object.keys(fees)
+  console.log({feesArray})
+  const totalFees = feesArray.reduce((sum, key) => sum + (fees[key] || 0), 0);
   // const feesArray = [
   //   "Monthly Fees",
   //   "Admission Fees",
@@ -60,7 +68,7 @@ const PaymentReceiptDetails = ({singlePayInfo, studentDetail}:TProps) => {
               <Checkbox id={item.toLowerCase()} />
               <label htmlFor="monthly-fees">{item}</label>
               </div>
-              <p>{paymentInfo[item]}</p>
+              <p>{fees[item]}</p>
             </div>
           ))}
         </div>

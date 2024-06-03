@@ -14,7 +14,7 @@ type TFees = {
 };
 export type TUpdateStudentPayment = {
   student: string;
-  class: {name:string, _id:string};
+  class: { name: string; _id: string };
   fees: TFees;
   discountOnFees: number;
   cashCollection: number;
@@ -50,13 +50,12 @@ export type TSinglePayInfo = {
   tie: number;
   yearlyMonthFees: number;
   _id: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
-
-
-
 export type TPaymentHistory = {
-  _id:string;
+  _id: string;
   student: Partial<TStudent>;
   class: TClass;
   studentPayment: string;

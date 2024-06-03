@@ -19,6 +19,7 @@ import {
 } from "../ui/alert-dialog";
 import { useDeleteStudentByIdMutation } from "@/redux/features/student/createStudentApi";
 import { toast } from "sonner";
+import { TResponse } from "@/types/global";
 
 const StudentDeleteBtn = ({ studentId }: { studentId: string }) => {
   const [deleteStudentById] = useDeleteStudentByIdMutation();
@@ -28,7 +29,7 @@ const StudentDeleteBtn = ({ studentId }: { studentId: string }) => {
     try {
       const toastId = toast.loading("Student deleting..");
 
-      const res = await deleteStudentById(_id);
+      const res = await deleteStudentById(_id) as TResponse;
       console.log("delete student ==>", res);
       if (res.data) {
         toast.success("Student deleted successfully", { id: toastId });
