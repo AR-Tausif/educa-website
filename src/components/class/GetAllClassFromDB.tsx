@@ -17,19 +17,24 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { ScrollArea } from "../ui/scroll-area";
+import { UpdateAcademicPaymentForm } from "../payment/UpdateAcademicPaymentForm";
+import { GanttChart } from "lucide-react";
+import ViewSingleAcademicPayment from "../payment/ViewSingleAcademicPayment";
 
 const GetAllClassFromDB = () => {
   const dispatch = useAppDispatch();
   const { data, error, isLoading } = useGetAllClassQuery(undefined);
-  const [deleteClassById]=useDeleteClassByIdMutation()
-  console.log(error);
+  const [deleteClassById] = useDeleteClassByIdMutation()
+
   type TClass = {
     _id: string;
     name: string;
   };
 
 
-  const handleDeleteClassById = async(_id:string)=>{
+  const handleDeleteClassById = async (_id: string) => {
     const res = await deleteClassById(_id)
     console.log(res)
 
@@ -43,25 +48,72 @@ const GetAllClassFromDB = () => {
               <h1 className="text-center">{item.name}</h1>
             </div>
             <div className="flex justify-between items-center mt-10 mr-10 ms-10 ">
-              <span>
-                <Dialog>
+              <div>
+                <Sheet>
                   <div
                     className="flex py-4 flex-1 items-end justify-end rounded-lg "
                     x-chunk="dashboard-02-chunk-1"
                   >
                     <div className="flex flex-col items-center gap-1 text-center">
-                      <DialogTrigger asChild>
-                        <FaEdit className="text-blue-700 font-bold text-3xl" />
-                      </DialogTrigger>
+
+                      <SheetTrigger asChild>
+                        <div title="Edit" className=" p-1.5 transition-all  rounded-full hover:bg-gray-400 cursor-pointer border border-transparent hover:border-gray-300">
+                          <FaEdit className="text-blue-700 font-bold text-3xl" />
+                        </div>
+                      </SheetTrigger>
+
                     </div>
                   </div>
-                  <EditClassModalForm classId={item._id} />
-                </Dialog>
-              </span>
-              <span>
+
+                  <SheetContent className="w-full sm:w-[50%]">
+                    <ScrollArea className="h-full w-full px-4">
+                      <SheetHeader>
+                        <SheetTitle className="text-center">Update Class</SheetTitle>
+                        <SheetDescription className="text-center sm:px-5 md:px-5 lg:px-20">
+                          {"Updating class with follow these input. When you update class then you can edit Academic Payment if needed. Click submit when you're done."}
+                        </SheetDescription>
+                      </SheetHeader>
+                      <div className="grid gap-4 py-4">
+                        <UpdateAcademicPaymentForm classId={item._id} />
+                      </div>
+                    </ScrollArea>
+                  </SheetContent>
+                </Sheet>
+              </div>
+              <div>
+                <Sheet>
+                  <div
+                    className="flex py-4 flex-1 items-end justify-end rounded-lg "
+                    x-chunk="dashboard-02-chunk-1"
+                  >
+                    <div title="View" className="flex flex-col items-center text-center p-1.5 transition-all  rounded-full hover:bg-gray-400 cursor-pointer border border-transparent hover:border-gray-300">
+                      <SheetTrigger asChild>
+                        <GanttChart className="text-blue-700 font-bold text-5xl" />
+                      </SheetTrigger>
+                    </div>
+                  </div>
+
+                  <SheetContent className="w-full sm:w-[50%]">
+                    <ScrollArea className="h-full w-full px-4">
+                      <SheetHeader>
+                        <SheetTitle className="text-center">View Academic Payment</SheetTitle>
+                        <SheetDescription className="text-center sm:px-5 md:px-5 lg:px-20">
+                          Here display academic payment details.
+                        </SheetDescription>
+                      </SheetHeader>
+                      <div className="grid gap-4 py-4">
+                        <ViewSingleAcademicPayment classId={item._id} />
+                      </div>
+                    </ScrollArea>
+                  </SheetContent>
+                </Sheet>
+              </div>
+              <div>
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <MdAutoDelete className="text-red-500 font-bold text-3xl" />
+                    <div title="Delete" className=" p-1.5 transition-all  rounded-full hover:bg-gray-400 cursor-pointer border border-transparent hover:border-gray-300">
+                      <MdAutoDelete className="text-red-500 font-bold text-3xl" />
+                    </div>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
@@ -76,11 +128,11 @@ const GetAllClassFromDB = () => {
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                       <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction onClick={()=>handleDeleteClassById(item._id)}>Continue</AlertDialogAction>
+                      <AlertDialogAction onClick={() => handleDeleteClassById(item._id)}>Continue</AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>
-              </span>
+              </div>
             </div>
           </div>
         </div>
