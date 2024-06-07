@@ -29,6 +29,7 @@ import { useCreateStudentMutation } from "@/redux/features/student/createStudent
 import { useGetAllClassQuery } from "@/redux/features/class/createClasApi";
 import { useRouter } from "next/navigation";
 import { TResponse } from "@/types/global";
+import { APP_ROUTES } from "@/lib/utils";
 
 export function AddStudentForm() {
   const router = useRouter()
@@ -49,7 +50,7 @@ export function AddStudentForm() {
         return toast.error(res.error.data.message as string);
       }
       toast.success("Student created successfully");
-      router.push(`/dashboard/all-students`)
+      router.push(`/${APP_ROUTES.ALL_STUDENT}`)
     } catch (err:any) {
       toast.error(err.message as string | "Sorry,please try again" );
       console.log(err);

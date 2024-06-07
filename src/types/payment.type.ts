@@ -1,3 +1,4 @@
+import { paymentValidNames } from "@/constant/payment";
 import { TClass, TStudent } from "./student";
 
 type TFees = {
@@ -14,7 +15,7 @@ type TFees = {
 };
 export type TUpdateStudentPayment = {
   student: string;
-  class: { name: string; _id: string };
+  class: string;
   fees: TFees;
   discountOnFees: number;
   cashCollection: number;
@@ -54,6 +55,13 @@ export type TSinglePayInfo = {
   updatedAt: string;
 };
 
+export type TPaymentDueInfo = {
+  dueFees: TFees;
+  extraFees: TFees;
+  totalDue: number;
+  totalExtraFees: number;
+};
+
 export type TPaymentHistory = {
   _id: string;
   student: Partial<TStudent>;
@@ -74,3 +82,46 @@ export type TPaymentHistory = {
   discountOnFees: number;
   cashCollection: number;
 };
+
+export type TAcademicPayment = {
+  class: string;
+  year: number;
+  createdBy: string;
+  // fees
+  yearlyMonthFees: number;
+  yearlyAccFees: number;
+  admissionFees: number;
+  reAdmissionFees: number;
+  books: number;
+  stationeries: number;
+  idCard: number;
+  tie: number;
+  studyTour: number;
+  examFees: number;
+  picnicFees: number;
+};
+
+// new start here
+
+const paymentKeys = [
+  "yearlyMonthFees",
+  "admissionFees",
+  "reAdmissionFees",
+  "books",
+  "stationeries",
+  "idCard",
+  "tie",
+  "studyTour",
+  "examFees",
+  "picnicFees",
+] as const;
+
+type ValidName = (typeof paymentValidNames)[number];
+type PayKeysValidName = (typeof  paymentKeys)[number];
+
+export interface PaymentField {
+  label: string;
+  id: PayKeysValidName;
+  name: ValidName;
+  placeholder: string;
+}

@@ -6,8 +6,9 @@ import { EllipsisVertical, GraduationCap } from "lucide-react";
 const Dashboard = () => {
   const countingArr = [
     { title: "Total Students", icon: "GraduationCap", number: "students", id: 1 },
-    { title: "Total Instructors", icon: "GraduationCap", number: 3320, id: 2 },
-    { title: "Total Payment", icon: "GraduationCap", number: 3320, id: 3 },
+    { title: "Total Collection", icon: "GraduationCap", number: "collection", id: 2 },
+    { title: "Total Remaining", icon: "GraduationCap", number: "remaining", id: 3 },
+    { title: "Total Payment", icon: "GraduationCap", number: "payment", id: 3 },
   ];
   return (
     <>

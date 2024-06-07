@@ -2,6 +2,8 @@ import React from "react";
 import { Checkbox } from "../ui/checkbox";
 import { TPaymentHistory } from "@/types/payment.type";
 import { toWords } from 'number-to-words';
+import { fieldDisplayNames } from "@/constant/payment";
+import toTitleCase from "@/lib/toTitleCase";
 
 
 type TProps = { singlePayInfo: Partial<TPaymentHistory>, studentName: string }
@@ -20,14 +22,17 @@ const PaymentHistoryReceipt = ({ singlePayInfo, studentName }: TProps) => {
         ...paymentInfo
     } = singlePayInfo;
      // Type assertion for paymentInfo
-  const academicInputDatas = paymentInfo as Record<string, number>;
-
+     const academicInputDatas = paymentInfo as Record<string, number>;
+ 
   // Exclude certain fields
-  const { discountOnFees: _, cashCollection: __, class:___, student:____, studentPayment: _____, createdAt, updatedAt,  ...fees } = academicInputDatas;
-  console.log(fees)
+  const { discountOnFees: _, cashCollection: __, ...fees } = academicInputDatas;
 
-    const feesArray = Object.keys(fees)
+    const feesArray = Object.keys(fees).filter(key => key in fieldDisplayNames  && (fees[key] > 1));
+    console.log(feesArray)
     const totalFees = feesArray.reduce((sum, key) => sum + (fees[key] || 0), 0);
+
+
+     
 
     return (
         <>
@@ -44,7 +49,7 @@ const PaymentHistoryReceipt = ({ singlePayInfo, studentName }: TProps) => {
                     <div>
                         <p>
                             {/* TODO: Class key changing */}
-                            Class: <strong> {studentClass?.name?.toUpperCase()}</strong>
+                            Class: <strong> {singlePayInfo?.class?.name.toUpperCase()}</strong>
                         </p>
                     </div>
                 </div>
@@ -54,21 +59,26 @@ const PaymentHistoryReceipt = ({ singlePayInfo, studentName }: TProps) => {
                     <p>
                         <strong>Amount Received:</strong> {totalFees ? totalFees : "N/A"} </p>
                     <p>
-                        <strong> In Words: </strong> {totalFees && toWords(totalFees)}
+                        <strong> In Words: </strong> {totalFees && toTitleCase(toWords(totalFees))}
                     </p>
                 </div>
                 <p>
                     <strong>For the month of:</strong> Apr-24
                 </p>
             </div>
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-4 mb-4 border-b">
                 {feesArray.map((item, index) => (
                     <div key={index} className="flex justify-between items-center border-b pb-3">
-                        <div className="space-x-3">
+                        {/* <div className="space-x-3">
                             <Checkbox id={item.toLowerCase()} />
                             <label htmlFor="monthly-fees">{item}</label>
                         </div>
-                        <p className="bg-muted w-32 px-4 py-1">{fees[item]}</p>
+                        <p className="w-32 px-4 py-1 shadow-sm">{fees[item]}</p> */}
+                        <div className="space-x-3 h-6 flex item-center">
+                            <Checkbox className="mt-2" checked id={item.toLowerCase()} />
+                            <p>{fieldDisplayNames[item] || item}</p>
+                        </div>
+                        <p className="w-32 bg-muted px-4 py-1 shadow-sm">{fees[item]}</p>
                     </div>
                 ))}
             </div>
