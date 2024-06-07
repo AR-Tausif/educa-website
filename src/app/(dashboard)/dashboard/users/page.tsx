@@ -14,7 +14,7 @@ import FormHeadingContent from "@/components/FormHeadingContent";
 const AllUsers = () => {
   return (
     <div className="h-screen">
-      <FormHeadingContent title="Available users" desc="Here listed all users from our server." csName="text-center pb-5" />
+      <FormHeadingContent title="Available users" desc="Here listed all users from our server." className="text-center pb-5" />
 
       <Table className="border rounded-md">
         <TableCaption>A list of your recent User.</TableCaption>

@@ -1,10 +1,23 @@
-
+import Blog from "@/components/home/Blog";
+import CallToAction from "@/components/home/CallToAction";
+import Features from "@/components/home/Features";
+import HeroSection from "@/components/home/HeroSection";
+import Layout from "@/components/home/Layout";
+import Stats from "@/components/home/Stats";
+import Testimonials from "@/components/home/Testimonials";
 
 const HomePage = () => {
   return (
-      <div className="flex items-center">
-        <h1 className="text-lg font-semibold md:text-2xl">Home Page</h1>
-      </div>
+    <Layout>
+      <main className="space-y-40 mb-40">
+        <HeroSection />
+        <Features />
+        <Stats />
+        <Testimonials />
+        <CallToAction />
+        <Blog />
+      </main>
+    </Layout>
   );
 };
 

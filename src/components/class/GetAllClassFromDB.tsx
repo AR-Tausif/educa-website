@@ -4,8 +4,6 @@ import { useDeleteClassByIdMutation, useGetAllClassQuery } from "@/redux/feature
 import { useAppDispatch } from "@/redux/hooks";
 import { FaEdit } from "react-icons/fa";
 import { MdAutoDelete } from "react-icons/md";
-import { Dialog, DialogTrigger } from "../ui/dialog";
-import EditClassModalForm from "../common/EditClassModalForm";
 import {
   AlertDialog,
   AlertDialogAction,

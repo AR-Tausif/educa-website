@@ -59,7 +59,7 @@ const invoices = [
 const AllPaymentHistoryPage = () => {
   return (
     <div className="h-screen">
-      <FormHeadingContent title="All payment history" desc="Here listed all payment histories from our server." csName="text-center pb-5" />
+      <FormHeadingContent title="All payment history" desc="Here listed all payment histories from our server." className="text-center pb-5" />
 
       <Table>
         <TableCaption>A list of your recent Students.</TableCaption>
