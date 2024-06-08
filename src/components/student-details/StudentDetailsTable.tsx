@@ -8,13 +8,41 @@ import ParentsInfo from "./ParentsInfo";
 import ProfileImageAndTitle from "./ProfileImageAndTitle";
 import Link from "next/link";
 import { APP_ROUTES } from "@/lib/utils";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import { FaArrowAltCircleDown, FaPrint } from "react-icons/fa";
+import { Sheet, SheetClose, SheetContent, SheetFooter, SheetTrigger } from "../ui/sheet";
+import { Button } from "../ui/button";
+import SingleStudentReceipt from "../payment/SingleStudentReceipt";
+import { ScrollArea } from "../ui/scroll-area";
+import { IoEye } from "react-icons/io5";
+import { Checkbox } from "../ui/checkbox";
+import { Loader } from "lucide-react";
+import { useGetStudentPaymentHistoryByClassAndStudentIdQuery } from "@/redux/features/student-payment/studentPaymentApi";
+import { usePDF } from "react-to-pdf";
+import SectionTitle from "../common/SectionTitle";
+import { TSinglePayInfo } from "@/types/payment.type";
 
 const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
+
+  const { toPDF, targetRef } = usePDF({ filename: "page.pdf" });
   const {
     data: studentDetail,
     error,
     isLoading,
   } = useGetStudentByStudentIdQuery(studentId);
+  const {
+    data: stdPayHistoryData,
+    isLoading: stdPayHistoryLoading,
+    isSuccess: stdPayHistoryIsSuccess,
+    error: stdPayHistoryIsError,
+  } = useGetStudentPaymentHistoryByClassAndStudentIdQuery({
+    classId: studentDetail?.data?.class._id,
+    studentId: studentId,
+  });
+
+  if (isLoading) {
+    return <><span className="pr-2">Please wait </span> <Loader className="animate-spin"/></>
+  }
   const datas: TStudent = studentDetail?.data;
   console.log(error);
   console.log(studentDetail);
@@ -76,6 +104,89 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
           </div>
           <Separator />
           <ParentsInfo studentData={studentDetail?.data} />
+        </div>
+      </div>
+      
+      <div className="mt-16">
+        <SectionTitle title="Pay Section" />
+        <div>
+          <h1 className="text-center text-black font-bold text-2xl underline">
+            All Payment History
+          </h1>
+
+          <Table>
+            <TableCaption>A list of your recent Payment History.</TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead>S.L</TableHead>
+                <TableHead>Name</TableHead>
+                <TableHead>Class</TableHead>
+                <TableHead>Payment Date</TableHead>
+                <TableHead>View</TableHead>
+                <TableHead>Print </TableHead>
+                <TableHead>Download</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {stdPayHistoryData?.data?.map(
+                (invoice: TSinglePayInfo, index: number) => (
+                  <TableRow key={invoice._id}>
+                    <TableCell className=" border-blue-600 border-b-4 border-t-4 border-s-4 border-r-2 text-xl">
+                      <Checkbox id="terms" className="mr-3" />
+                      {index + 1}
+                    </TableCell>
+
+                    <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4">
+                      {studentDetail?.data?.studentName}
+                    </TableCell>
+                    <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4">
+                      {studentDetail?.data?.class?.name}
+                    </TableCell>
+
+                    <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4 text-purple-700">
+                      {invoice.date ? new Date(invoice.date).toDateString() : "..."}
+                    </TableCell>
+
+                    <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4  text-black">
+                      <Sheet>
+                        <SheetTrigger asChild>
+                          <IoEye className="text-2xl" />
+                        </SheetTrigger>
+                        <SheetContent>
+                          <ScrollArea className="h-[90vh] w-auto">
+                            <SingleStudentReceipt
+                              targetRef={targetRef}
+                              studentDetail={studentDetail?.data}
+                              singlePayInfo={invoice}
+                            />
+                            <SheetFooter>
+                              <SheetClose asChild>
+                                <Button
+                                  onClick={() => toPDF()}
+                                  className="mr-16"
+                                >
+                                  Download PDF
+                                </Button>
+                              </SheetClose>
+                            </SheetFooter>
+                          </ScrollArea>
+                        </SheetContent>
+                      </Sheet>
+                    </TableCell>
+
+                    <TableCell className="font-medium   border-blue-600 border-t-4 border-b-4  text-blue-500">
+                      <FaPrint className="text-2xl" />
+                      2w
+                    </TableCell>
+
+                    <TableCell className="font-medium  border-blue-600 border-b-4 border-t-4 border-r-4 text-xl text-green-500">
+                      <FaArrowAltCircleDown className="text-2xl text-center ms-5 " />
+                    </TableCell>
+                  </TableRow>
+                )
+              )}
+            </TableBody>
+          </Table>
         </div>
       </div>
     </>

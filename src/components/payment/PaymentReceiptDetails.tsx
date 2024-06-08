@@ -13,6 +13,7 @@ const PaymentReceiptDetails = ({ singlePayInfo, studentDetail }: TProps) => {
     _id,
     discountOnFees,
     date,
+    receivedBy,
     cashCollection,
     createdAt,
     updatedAt,
@@ -20,7 +21,7 @@ const PaymentReceiptDetails = ({ singlePayInfo, studentDetail }: TProps) => {
   } = singlePayInfo;
   // Type assertion for paymentInfo
   const academicInputDatas = paymentInfo as Record<string, number>;
-
+console.log(receivedBy)
   // Exclude certain fields
   const {
     discountOnFees: _,
@@ -74,7 +75,7 @@ const PaymentReceiptDetails = ({ singlePayInfo, studentDetail }: TProps) => {
           </p>
         </div>
         <p>
-          <strong>For the month of:</strong> Apr-24
+          <strong>For the month of:</strong> {new Date(date).getMonth()}
         </p>
       </div>
       <div className="grid grid-cols-2 gap-4 mb-4">
@@ -83,11 +84,6 @@ const PaymentReceiptDetails = ({ singlePayInfo, studentDetail }: TProps) => {
             key={index}
             className="flex justify-between items-center border-b pb-3"
           >
-            {/* <div className="space-x-3">
-                <Checkbox checked id={item.toLowerCase()} />
-                <label htmlFor="monthly-fees">{item}</label>
-              </div>
-              <p>{fees[item]}</p> */}
             <div className="space-x-3 h-6 flex item-center">
               <Checkbox className="mt-2" checked id={item.toLowerCase()} />
               <p>{fieldDisplayNames[item] || "Others"}</p>
@@ -106,7 +102,7 @@ const PaymentReceiptDetails = ({ singlePayInfo, studentDetail }: TProps) => {
         </div>
         <div>
           <p>
-            <strong>Received by:</strong> Arshad
+            <strong>Received by:</strong> {receivedBy?.fullName}
           </p>
         </div>
       </div>

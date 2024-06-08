@@ -1,60 +1,13 @@
-import React from "react";
 import {
   Table,
   TableBody,
   TableCaption,
-  TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { FaEdit, FaArrowAltCircleDown } from "react-icons/fa";
-import { MdAutoDelete } from "react-icons/md";
-import { IoEye } from "react-icons/io5";
-import { FaPrint } from "react-icons/fa";
-
-import { Checkbox } from "@/components/ui/checkbox";
 import FormHeadingContent from "@/components/FormHeadingContent";
 import AllPaymentHistoryTableRow from "@/components/payment/AllPaymentHistoryTableRow";
-
-const invoices = [
-  {
-    StudentName: "samim",
-    ClassName: "KG-2",
-    Date: "05-01-2015",
-  },
-  {
-    StudentName: "hossain",
-    ClassName: "Pre-Play",
-    Date: "05-01-2015",
-  },
-  {
-    StudentName: "sujon",
-    ClassName: "KG-2",
-    Date: "05-01-2015",
-  },
-  {
-    StudentName: "shakil",
-    ClassName: "KG-2",
-    Date: "05-01-2015",
-  },
-  {
-    StudentName: "santo",
-    ClassName: "KG-2",
-    Date: "05-01-2015",
-  },
-  {
-    StudentName: "habib",
-    ClassName: "Pre-Play",
-    Date: "05-01-2015",
-  },
-  {
-    StudentName: "jalal",
-    ClassName: "KG-2",
-    Date: "05-01-2015",
-  },
-];
 
 const AllPaymentHistoryPage = () => {
   return (

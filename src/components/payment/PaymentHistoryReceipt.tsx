@@ -15,12 +15,14 @@ const PaymentHistoryReceipt = ({ singlePayInfo, studentName }: TProps) => {
         discountOnFees,
         cashCollection,
         student,
+        receivedBy,
         class: studentClass,
         studentPayment,
         year,
-        date,
+        date:payDate,
         ...paymentInfo
     } = singlePayInfo;
+    console.log(singlePayInfo)
      // Type assertion for paymentInfo
      const academicInputDatas = paymentInfo as Record<string, number>;
  
@@ -63,7 +65,7 @@ const PaymentHistoryReceipt = ({ singlePayInfo, studentName }: TProps) => {
                     </p>
                 </div>
                 <p>
-                    <strong>For the month of:</strong> Apr-24
+                    <strong>For the month of:</strong> {new Date(payDate!).getMonth()}
                 </p>
             </div>
             <div className="grid grid-cols-2 gap-4 mb-4 border-b">
@@ -90,13 +92,13 @@ const PaymentHistoryReceipt = ({ singlePayInfo, studentName }: TProps) => {
                 </div>
                 <div>
                     <p>
-                        <strong>Received by:</strong> Arshad
+                        <strong>Received by:</strong> {receivedBy?.fullName}
                     </p>
                 </div>
             </div>
             <div className="flex justify-between items-center mt-4">
                 <div>
-                    <p className="text-sm">Date: 20-Apr-24</p>
+                    <p className="text-sm">Date: {new Date(payDate!).toDateString()}</p>
                 </div>
                 <div className="flex items-center">
                     <div className="space-x-3">

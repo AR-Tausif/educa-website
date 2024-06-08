@@ -1,5 +1,6 @@
 import { paymentValidNames } from "@/constant/payment";
 import { TClass, TStudent } from "./student";
+import { TUser } from "./user.type";
 
 type TFees = {
   yearlyMonthFees: number;
@@ -37,6 +38,7 @@ export const TUpdateStudentPaymentInputFields = {
 };
 
 export type TSinglePayInfo = {
+  receivedBy:TUser;
   admissionFees: number;
   books: number;
   cashCollection: number;
@@ -62,10 +64,12 @@ export type TPaymentDueInfo = {
   totalExtraFees: number;
 };
 
+
 export type TPaymentHistory = {
   _id: string;
   student: Partial<TStudent>;
   class: TClass;
+  receivedBy:TUser;
   studentPayment: string;
   year: number;
   date: Date;
