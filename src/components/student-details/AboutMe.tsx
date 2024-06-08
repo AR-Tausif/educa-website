@@ -15,7 +15,7 @@ const AboutMe = ({ studentData }: { studentData: TStudent }) => {
       <div className="flex flex-col gap-16">
         <div className="text-sm font-semibold">
           <p className="text-gray-500">Date of birth</p>
-          <p className="text-gray-800">{studentData?.dateOfBirth}</p>
+          <p className="text-gray-800">{new Date(studentData?.dateOfBirth).toDateString()}</p>
         </div>
         <div className="text-sm font-semibold">
           <p className="text-gray-500">Citizenship</p>
