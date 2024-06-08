@@ -8,7 +8,8 @@ import Testimonials from "@/components/home/Testimonials";
 
 const HomePage = () => {
   return (
-    <Layout>
+    <>
+    {/* <Layout>
       <main className="space-y-40 mb-40">
         <HeroSection />
         <Features />
@@ -17,7 +18,13 @@ const HomePage = () => {
         <CallToAction />
         <Blog />
       </main>
-    </Layout>
+    </Layout> */}
+
+
+    <div className="">
+      Home Page
+    </div>
+    </>
   );
 };
 
