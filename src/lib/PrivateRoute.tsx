@@ -7,6 +7,7 @@ import { ReactNode } from "react"
 const PrivateRoute = ({children}: {children: ReactNode}) => {
  
     const {token} = useAppSelector(state=>state.auth)
+
     if(token){
         return children
     }

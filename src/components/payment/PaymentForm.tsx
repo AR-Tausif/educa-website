@@ -244,7 +244,7 @@ export default function PaymentForm({
                     <FormItem>
                       <FormLabel>Due</FormLabel>
                       <FormControl>
-                        <Input value={stdPayDueData?.dueFees[itemField.id] || 0} disabled />
+                        <Input value={itemField.id === "yearlyMonthFees" ? stdPayDueData?.dueFees.monthlyFees :stdPayDueData?.dueFees[itemField.id] || 0} disabled />
                       </FormControl>
                     </FormItem>
                   )}

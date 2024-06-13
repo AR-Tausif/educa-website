@@ -24,6 +24,9 @@ import { APP_ROUTES } from "@/lib/utils";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
+import Cookies from 'js-cookie';
+import { TError } from "@/types/global";
+
 
 export default function LoginForm() {
   const [login, { data, error, isLoading }] = useLoginMutation();
@@ -47,11 +50,12 @@ export default function LoginForm() {
       console.log(loginResponse);
       const user = VerifyToken(loginResponse.data.accessToken);
       dispatch(setUser({ user, token: loginResponse.data.accessToken }));
-      router.push("/dashboard");
       toast.success(loginResponse.message, { id: toastId });
-    } catch (error) {
+      Cookies.set('accessToken', loginResponse.data.accessToken);
+      router.push("/dashboard");
+    } catch (error:any) {
       console.log(error);
-      toast.error("Something went wrong!", { id: toastId });
+      toast.error(error?.data?.message || "Something went wrong!", { id: toastId });
     }
   }
   return (

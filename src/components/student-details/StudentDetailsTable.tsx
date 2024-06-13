@@ -123,8 +123,8 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
                 <TableHead>Class</TableHead>
                 <TableHead>Payment Date</TableHead>
                 <TableHead>View</TableHead>
-                <TableHead>Print </TableHead>
-                <TableHead>Download</TableHead>
+                {/* <TableHead>Print </TableHead>
+                <TableHead>Download</TableHead> */}
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -174,14 +174,14 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
                       </Sheet>
                     </TableCell>
 
-                    <TableCell className="font-medium   border-blue-600 border-t-4 border-b-4  text-blue-500">
+                    {/* <TableCell className="font-medium   border-blue-600 border-t-4 border-b-4  text-blue-500">
                       <FaPrint className="text-2xl" />
                       2w
                     </TableCell>
 
                     <TableCell className="font-medium  border-blue-600 border-b-4 border-t-4 border-r-4 text-xl text-green-500">
                       <FaArrowAltCircleDown className="text-2xl text-center ms-5 " />
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 )
               )}

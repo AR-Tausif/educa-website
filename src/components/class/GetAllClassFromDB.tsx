@@ -1,7 +1,7 @@
 "use client";
 
 import { useDeleteClassByIdMutation, useGetAllClassQuery } from "@/redux/features/class/createClasApi";
-import { useAppDispatch } from "@/redux/hooks";
+
 import { FaEdit } from "react-icons/fa";
 import { MdAutoDelete } from "react-icons/md";
 import {
@@ -22,7 +22,7 @@ import { GanttChart } from "lucide-react";
 import ViewSingleAcademicPayment from "../payment/ViewSingleAcademicPayment";
 
 const GetAllClassFromDB = () => {
-  const dispatch = useAppDispatch();
+
   const { data, error, isLoading } = useGetAllClassQuery(undefined);
   const [deleteClassById] = useDeleteClassByIdMutation()
 

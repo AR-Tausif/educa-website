@@ -14,6 +14,7 @@ const UpdatePaymentMutation = async (
     class: info.classId,
     student: info.studentId,
     fees: {
+      monthlyFees:0,
       admissionFees: formData.admission,
       reAdmissionFees: formData.readmission,
       yearlyMonthFees: formData.monthly,

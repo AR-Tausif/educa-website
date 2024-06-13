@@ -68,13 +68,13 @@ const AllPaymentHistoryTableRow = () => {
                    </Sheet>
                  </TableCell>
 
-              <TableCell className="font-medium    text-blue-500">
+              {/* <TableCell className="font-medium    text-blue-500">
                 <FaPrint className="text-2xl" />
               </TableCell>
 
               <TableCell className="font-medium  text-xl text-red-500">
                 <FaArrowAltCircleDown className="text-2xl text-center ms-5 " />
-              </TableCell>
+              </TableCell> */}
             </TableRow>
           ))}</>
   )

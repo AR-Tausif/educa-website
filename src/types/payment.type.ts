@@ -3,6 +3,7 @@ import { TClass, TStudent } from "./student";
 import { TUser } from "./user.type";
 
 type TFees = {
+  monthlyFees:number;
   yearlyMonthFees: number;
   admissionFees: number;
   reAdmissionFees: number;
@@ -92,6 +93,7 @@ export type TAcademicPayment = {
   year: number;
   createdBy: string;
   // fees
+  monthlyFees:number;
   yearlyMonthFees: number;
   yearlyAccFees: number;
   admissionFees: number;

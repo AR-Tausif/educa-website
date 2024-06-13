@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/Providers";
 import { Toaster } from "sonner";
+import PrivateRoute from "@/lib/PrivateRoute";
+import SideNavigationBar from "@/components/common/SideNavigationBar";
+import NavigationBar from "@/components/common/NavigationBar";
 
 const inter = Inter({ subsets: ["latin"] });
 

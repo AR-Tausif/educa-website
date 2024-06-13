@@ -23,4 +23,7 @@ export const APP_ROUTES = {
   // Payment
   PAYMENT: "dashboard/payment",       //  :DYNAMIC ID
   ALL_PAYMENT_HISTORY: "dashboard/all-payment-history",
+
+  // PROFILE
+  PROFILE: "dashboard/profile"
 }

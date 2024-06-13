@@ -140,7 +140,7 @@ export function UpdateAcademicPaymentForm({classId}:{classId: string}) {
                 </div>
                 {isLoading ? <Button disabled className="my-4 px-10 flex">
                 <span className="pr-2">Please wait </span> <Loader className="animate-spin"/>
-                    </Button> :<Button type="submit" className="my-4 px-10">Save</Button>}
+                    </Button> :<Button disabled className="my-4 px-10">Not availabe right now.</Button>}
             </form>
         </Form>
 

@@ -23,8 +23,8 @@ const AllPaymentHistoryPage = () => {
             <TableHead>Class</TableHead>
             <TableHead>Payment Date</TableHead>
             <TableHead>View</TableHead>
-            <TableHead>Print </TableHead>
-            <TableHead>Download</TableHead>
+            {/* <TableHead>Print </TableHead>
+            <TableHead>Download</TableHead> */}
           </TableRow>
         </TableHeader>
         <TableBody>

@@ -10,7 +10,7 @@ import {
   useUpdateStudentPaymentByClassIdAndStudentIdMutation,
 } from "@/redux/features/student-payment/studentPaymentApi";
 import { useGetStudentByStudentIdQuery } from "@/redux/features/student/createStudentApi";
-import { StudentPayment } from "@/types";
+import { StudentPayment } from "@/types/index";
 import {
   TAcademicPayment,
   TUpdateStudentPayment,
@@ -151,7 +151,7 @@ const SinglePaymentPage = ({ params }: { params: { studentId: string } }) => {
       label: "Monthly Fees",
       id: TUpdateStudentPaymentInputFields.monthlyFees,
       name: TUpdateStudentPaymentInputFields.monthlyFees,
-      placeholder: academicPayment?.yearlyMonthFees,
+      placeholder: academicPayment?.monthlyFees,
     },
     {
       label: "Admission Fees",
