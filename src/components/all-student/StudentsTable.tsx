@@ -22,10 +22,6 @@ import { Loader } from "lucide-react";
 
 const StudentsTable = () => {
   const { data, isLoading } = useGetAllStudentQuery("");
- 
-
-  const router = useRouter();
-  console.log(data);
   
 
   if (isLoading) {
@@ -64,75 +60,6 @@ const StudentsTable = () => {
           {data?.data.map((student: TStudent, index: number) => (
             <TableBodyRow   key={index} student={student} />
           ))}
-          {/* {data?.data.map((invoice: any, index: number) => (
-            <TableRow key={invoice._id} className="text-start">
-              <TableCell className=" border-blue-600 border-b-4 border-t-4 border-s-4 border-r-2 text-xl">
-                <Checkbox id="terms" className="mr-3" />
-                {index + 1}
-              </TableCell>
-
-              <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4">
-                {invoice.studentName}
-              </TableCell>
-              <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4">
-                {invoice.fatherName}
-              </TableCell>
-
-              <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4">
-                {invoice.gender}
-              </TableCell>
-
-              <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4 text-green-500">
-                <Link href={`all-students/${invoice._id}`}>
-                  <Button>Details</Button>
-                </Link>
-              </TableCell>
-              <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4 text-green-500">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button>Pay Now</Button>
-                  </DialogTrigger>
-                  <StudentPaymentStatusDialogBox
-                    classId={invoice?.class?.name}
-                    studentId={invoice._id}
-                    name={invoice.studentName}
-                    fatherName={invoice.fatherName}
-                    motherName={invoice.motherName}
-                  />
-                </Dialog>
-              </TableCell>
-
-              <TableCell className="font-medium  border-blue-600 border-b-4 border-t-4 border-r-4 text-xl text-red-500 text-center">
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <MdAutoDelete className="text-2xl text-center ms-5 hover:cursor-pointer" />
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>
-                        Are you absolutely sure?
-                      </AlertDialogTitle>
-                      <AlertDialogDescription>
-                        This action cannot be undone. This will permanently
-                        delete your account and remove your data from our
-                        servers.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={() => handleDelete(invoice._id)}
-                      >
-                        Continue
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </TableCell>
-            </TableRow>
-          ))} */}
-
-
         </TableBody>
       </Table>
     </>

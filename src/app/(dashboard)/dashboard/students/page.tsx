@@ -7,7 +7,7 @@ import FormHeadingContent from "@/components/FormHeadingContent";
 const AllStudentsPage = () => {
 
   return (
-    <div className="h-screen px-5 pb-5">
+    <div className="h-screen px-5 pb-10">
       <FormHeadingContent title="All students" desc="Here listed all students from our server." className="text-center pb-5" />
       <StudentsTable/>
     </div>

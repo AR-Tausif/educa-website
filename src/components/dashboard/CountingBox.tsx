@@ -1,6 +1,12 @@
 "use client";
 import { useGetCountingDocsQuery } from "@/redux/features/user/userApi";
-import { Activity, CreditCard, DollarSign, GraduationCap, Loader, Loader2, Users } from "lucide-react";
+import {
+  Activity,
+  CreditCard,
+  DollarSign,
+  Loader,
+  Users,
+} from "lucide-react";
 import React, { ReactNode } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import SkeletonCard from "../common/SkeletonCard";
@@ -39,16 +45,31 @@ const CountingBox = ({ item }: TProps) => {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
-        {number === "collection" && <DollarSign className="h-4 w-4 text-muted-foreground" />}
-        {number === "students" && <Users className="h-4 w-4 text-muted-foreground" />}
-        {number === "remaining" && <CreditCard className="h-4 w-4 text-muted-foreground" />}
-        {number === "payment" && <Activity className="h-4 w-4 text-muted-foreground" />}
+        {number === "collection" && (
+          <DollarSign className="h-4 w-4 text-muted-foreground" />
+        )}
+        {number === "students" && (
+          <Users className="h-4 w-4 text-muted-foreground" />
+        )}
+        {number === "remaining" && (
+          <CreditCard className="h-4 w-4 text-muted-foreground" />
+        )}
+        {number === "payment" && (
+          <Activity className="h-4 w-4 text-muted-foreground" />
+        )}
       </CardHeader>
       {isFetching ? (
         <SkeletonCard />
       ) : (
         <CardContent>
-          <div className="text-2xl font-bold">{desc} {number === "students" || number ==="payment" ? "": "Tk"}</div>
+          <div className="text-2xl font-bold text-gray-600">
+            {desc}{" "}
+            {number === "students" || number === "payment" ? (
+              ""
+            ) : (
+              <span className="text-gray-700">Tk</span>
+            )}
+          </div>
           {/* <p className="text-xs text-muted-foreground">+20.1% from last month</p> */}
         </CardContent>
       )}
