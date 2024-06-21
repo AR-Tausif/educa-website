@@ -14,6 +14,7 @@ type TFees = {
   studyTour: number;
   examFees: number;
   picnicFees: number;
+  others?:number
 };
 export type TUpdateStudentPayment = {
   student: string;

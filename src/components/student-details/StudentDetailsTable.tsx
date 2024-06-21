@@ -107,15 +107,15 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
         </div>
       </div>
       
-      <div className="mt-16">
-        <SectionTitle title="Pay Section" />
+      <div className="mt-16 pb-16">
+        {/* <SectionTitle title="Pay Section" /> */}
         <div>
-          <h1 className="text-center text-black font-bold text-2xl underline">
+          <h1 className="text-center text-black font-bold text-2xl pt-3 border-b">
             All Payment History
           </h1>
 
-          <Table>
-            <TableCaption>A list of your recent Payment History.</TableCaption>
+          <Table className="border">
+            <TableCaption className="py-5">A list of your recent Payment History.</TableCaption>
             <TableHeader>
               <TableRow>
                 <TableHead>S.L</TableHead>
@@ -131,23 +131,23 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
               {stdPayHistoryData?.data?.map(
                 (invoice: TSinglePayInfo, index: number) => (
                   <TableRow key={invoice._id}>
-                    <TableCell className=" border-blue-600 border-b-4 border-t-4 border-s-4 border-r-2 text-xl">
+                    <TableCell className=" text-xl">
                       <Checkbox id="terms" className="mr-3" />
                       {index + 1}
                     </TableCell>
 
-                    <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4">
+                    <TableCell className="font-medium ">
                       {studentDetail?.data?.studentName}
                     </TableCell>
-                    <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4">
+                    <TableCell className="font-medium">
                       {studentDetail?.data?.class?.name}
                     </TableCell>
 
-                    <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4 text-purple-700">
+                    <TableCell className="font-medium  text-purple-700">
                       {invoice.date ? new Date(invoice.date).toDateString() : "..."}
                     </TableCell>
 
-                    <TableCell className="font-medium  border-blue-600 border-t-4 border-b-4  text-black">
+                    <TableCell className="font-medium  text-black">
                       <Sheet>
                         <SheetTrigger asChild>
                           <IoEye className="text-2xl" />

@@ -105,6 +105,7 @@ export const paymentFields: PaymentField[] = [
     idCard: "",
     stationeries: "",
     tie: "",
+    others:"",
     discountOnFees:"",
     cashCollection: "",
   }

@@ -11,6 +11,7 @@ export const StudentPaymentFormSchema = z.object({
     idCard: z.string(),
     stationeries: z.string(),
     tie: z.string(),
+    others: z.string(),
     discountOnFees:z.string(),
     cashCollection: z.string(),
   })

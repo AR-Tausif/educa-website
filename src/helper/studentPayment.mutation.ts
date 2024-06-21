@@ -25,6 +25,7 @@ const UpdatePaymentMutation = async (
       studyTour: formData.studyTour,
       idCard: formData.idCard,
       tie: formData.tie,
+      others: formData.others,
     },
     discountOnFees: formData.discountOnFees,
     cashCollection: formData.cashCollection,

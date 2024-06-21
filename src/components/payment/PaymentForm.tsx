@@ -37,6 +37,7 @@ import { TStudent } from "@/types/student";
 import { APP_ROUTES } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import AppRouter from "next/dist/client/components/app-router";
+import PaymentFieldBox from "../common/PaymentFieldBox";
 
 type TPaymentFormProps = {
   student: TStudent;
@@ -131,6 +132,12 @@ export default function PaymentForm({
       name: "tie",
       placeholder: `${academicSinglePaymentData?.tie}`,
     },
+    // {
+    //   label: "Others",
+    //   id: "others",
+    //   name: "others",
+    //   placeholder: `${academicSinglePaymentData?.tie}`,
+    // },
 
     // Add more fields as needed
   ];
@@ -177,6 +184,7 @@ export default function PaymentForm({
       stationeries: Number(data.stationeries) | 0,
       tie: Number(data.tie) | 0,
       discountOnFees: Number(data.discountOnFees),
+      others: Number(data.others) | 0,
       cashCollection: totalPayInputSum | 0, // here took cashCollection with immutablly
     };
     showToastWithFormData(updatedData);
@@ -185,7 +193,7 @@ export default function PaymentForm({
       updatedData,
       { classId: student.class._id, studentId: student._id }
     );
-    router.push(`/${APP_ROUTES.ALL_STUDENT}/${student._id}`)
+    // router.push(`/${APP_ROUTES.ALL_STUDENT}/${student._id}`)
   }
 
   return (
@@ -252,6 +260,8 @@ export default function PaymentForm({
               </div>
             </div>
           ))}
+
+          <PaymentFieldBox form={form} />
         </div>
 
         <div className="">
