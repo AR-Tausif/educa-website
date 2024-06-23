@@ -7,7 +7,7 @@ const StudentDetailByClassId = () => {
   console.log(router)
   return (
     <div>
-      <h1>fadsf</h1>
+      <h5>fadsf</h5>
     </div>
   );
 };

@@ -22,11 +22,11 @@ const HeroSection = () => {
       <Container>
         <div className="relative pt-36 ml-auto">
           <div className="lg:w-2/3 text-center mx-auto">
-            <h1 className="text-gray-900 dark:text-white font-bold text-5xl md:text-6xl xl:text-7xl">
+            <h5 className="text-gray-900 dark:text-white font-bold text-5xl md:text-6xl xl:text-7xl">
               {/* Shaping a world with{" "} */}
               <span className="text-purple-800">EDUCA</span> International{" "}
               <span className="text-primary dark:text-white">School.</span>
-            </h1>
+            </h5>
             <p className="mt-8 text-gray-700 dark:text-gray-300">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
               incidunt nam itaque sed eius modi error totam sit illum. Voluptas

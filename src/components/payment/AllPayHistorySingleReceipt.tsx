@@ -11,9 +11,9 @@ export default function AllPayHistorySingleReceipt({ singlePayInfo, studentName,
             <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center">
                     <SchoolIcon className="h-8 w-8 text-gray-700" />
-                    <h1 className="text-xl font-semibold ml-2">
+                    <h5 className="text-xl font-semibold ml-2">
                         Educa International School
-                    </h1>
+                    </h5>
                 </div>
                 <div className="text-center">
                     <h2 className="text-3xl font-bold">Fees Receipt</h2>

@@ -64,45 +64,45 @@ const StudentDetailsPage = () => {
       <div>
         <SectionTitle title="Student Info" />
         <div className="grid grid-cols-3 mt-10">
-          <h1>Student Name</h1>
-          <h1>Class</h1>
-          <h1>Student Gender</h1>
-          <h1>Date of Birth</h1>
-          <h1>Date of Birth</h1>
-          <h1>Date of Birth</h1>
-          <h1>Nationality</h1>
-          <h1>Nationality</h1>
-          <h1>Present Address</h1>
-          <h1>Permanent address</h1>
+          <h5>Student Name</h5>
+          <h5>Class</h5>
+          <h5>Student Gender</h5>
+          <h5>Date of Birth</h5>
+          <h5>Date of Birth</h5>
+          <h5>Date of Birth</h5>
+          <h5>Nationality</h5>
+          <h5>Nationality</h5>
+          <h5>Present Address</h5>
+          <h5>Permanent address</h5>
         </div>
 
         <SectionTitle title="Father's Info" />
         <div className="grid grid-cols-3 mt-10">
-          <h1>Father Name</h1>
-          <h1>Email</h1>
-          <h1>Phone Number</h1>
-          <h1>NID</h1>
-          <h1>Profession</h1>
-          <h1>Pesignation</h1>
+          <h5>Father Name</h5>
+          <h5>Email</h5>
+          <h5>Phone Number</h5>
+          <h5>NID</h5>
+          <h5>Profession</h5>
+          <h5>Pesignation</h5>
         </div>
 
         <SectionTitle title="Mother's Info" />
         <div className="grid grid-cols-3 mt-10">
-          <h1>Mother Name</h1>
-          <h1>Email</h1>
-          <h1>Phone Number</h1>
-          <h1>NID</h1>
-          <h1>Profession</h1>
-          <h1>Pesignation</h1>
+          <h5>Mother Name</h5>
+          <h5>Email</h5>
+          <h5>Phone Number</h5>
+          <h5>NID</h5>
+          <h5>Profession</h5>
+          <h5>Pesignation</h5>
         </div>
       </div>
 
       <div className="mt-16">
         <SectionTitle title="Pay Section" />
         <div>
-          <h1 className="text-center text-black font-bold text-2xl underline">
+          <h5 className="text-center text-black font-bold text-2xl underline">
             All Payment History
-          </h1>
+          </h5>
 
           <Table>
             <TableCaption>A list of your recent Payment History.</TableCaption>

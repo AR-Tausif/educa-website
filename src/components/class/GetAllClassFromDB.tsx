@@ -43,7 +43,7 @@ const GetAllClassFromDB = () => {
         <div key={item._id} className="p-6 rounded-md border bg-slate-400">
           <div className="px-2 py-2">
             <div className="font-bold text-xl mb-2">
-              <h1 className="text-center">{item.name}</h1>
+              <h5 className="text-center">{item.name}</h5>
             </div>
             <div className="flex justify-between items-center mt-10 mr-10 ms-10 ">
               <div>

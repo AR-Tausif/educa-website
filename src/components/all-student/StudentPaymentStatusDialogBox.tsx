@@ -37,15 +37,15 @@ const StudentPaymentStatusDialogBox = ({
       </AlertDialogHeader>
       <div className="grid gap-4 py-4">
         <div className="grid grid-cols-2 items-center gap-4">
-          <h1>Student Name : {name}</h1>
-          <h1>Class Name : {studentClass?.name}</h1>
-          <h1>Father Name : {fatherName}</h1>
-          <h1>Mother Name : {motherName}</h1>
+          <h5>Student Name : {name}</h5>
+          <h5>Class Name : {studentClass?.name}</h5>
+          <h5>Father Name : {fatherName}</h5>
+          <h5>Mother Name : {motherName}</h5>
         </div>
         <div className="grid-cols-2 items-center gap-4 mt-5">
-          <h1 className="text-center font-bold  text-3xl">Due Academic Fees</h1>
-          <h1>Total Due Fees {stdPayDueData?.data?.totalDue} TK</h1>
-          <h1>Last Payment Date</h1>
+          <h5 className="text-center font-bold  text-3xl">Due Academic Fees</h5>
+          <h5>Total Due Fees {stdPayDueData?.data?.totalDue} TK</h5>
+          <h5>Last Payment Date</h5>
         </div>
       </div>
       <AlertDialogFooter>

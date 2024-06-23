@@ -5,7 +5,7 @@ const DetailsPage = ({ params }: { params: { classId: string } }) => {
 
   return (
     <div>
-      <h1>Details Page</h1>
+      <h5>Details Page</h5>
       <SingleClassStudents classId={params.classId}  />
     </div>
   );

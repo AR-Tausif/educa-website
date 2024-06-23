@@ -95,18 +95,18 @@ const StudentDetails = ({ studentId }: { studentId: string }) => {
       <div>
         <SectionTitle title="Student Info" />
         <div className="grid grid-cols-3 mt-10">
-          <h1>Student Name : {studentName} </h1>
-          <h1>
+          <h5>Student Name : {studentName} </h5>
+          <h5>
             Class :{" "}
             <span className="font-bold">
               {studentClass?.name.toUpperCase() || "..."}{" "}
             </span>{" "}
-          </h1>
-          <h1>Student Gender : {gender || "***"}</h1>
-          <h1>Date of Birth : {dateOfBirth} </h1>
-          <h1>Nationality : {nationality || "Bangladeshi"}</h1>
-          <h1>Present Address : {presentAddress || "..."} </h1>
-          <h1>Permanent address : {permanentAddress} </h1>
+          </h5>
+          <h5>Student Gender : {gender || "***"}</h5>
+          <h5>Date of Birth : {dateOfBirth} </h5>
+          <h5>Nationality : {nationality || "Bangladeshi"}</h5>
+          <h5>Present Address : {presentAddress || "..."} </h5>
+          <h5>Permanent address : {permanentAddress} </h5>
         </div>
 
         <SectionTitle title="Father's Info" />
@@ -133,9 +133,9 @@ const StudentDetails = ({ studentId }: { studentId: string }) => {
       <div className="mt-16">
         <SectionTitle title="Pay Section" />
         <div>
-          <h1 className="text-center text-black font-bold text-2xl underline">
+          <h5 className="text-center text-black font-bold text-2xl underline">
             All Payment History
-          </h1>
+          </h5>
 
           <Table>
             <TableCaption>A list of your recent Payment History.</TableCaption>
