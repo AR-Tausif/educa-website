@@ -1,6 +1,3 @@
-
-import Image from "next/image";
-
 import StudentDetailsTable from "@/components/student-details/StudentDetailsTable";
 const SingleStudentPage = ({ params }: { params: { studentId: string } }) => {
   return (

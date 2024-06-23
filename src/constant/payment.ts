@@ -11,6 +11,7 @@ export const paymentValidNames = [
     "idCard",
     "stationeries",
     "tie",
+    "others"
   ] as const;
 
   export const fieldDisplayNames: Record<string, string> = {
@@ -24,6 +25,7 @@ export const paymentValidNames = [
     books: "Books",
     idCard: "ID Card",
     tie: "Tie",
+    others: "Others"
     // Add other fields here
   };
   

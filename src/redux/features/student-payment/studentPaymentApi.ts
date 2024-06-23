@@ -13,14 +13,15 @@ const createStudentPaymentApi = baseApi.injectEndpoints({
         method: "PATCH",
         body: studentInfo,
       }),
+      invalidatesTags: ["upstdp"],
     }),
     getDueStudentPaymentByClassAndStudentId: builder.query({
       query: (payload: TGetDueStudentPaymentByClassAndStudentId) =>
-        `/student-payment/due/${payload.classId}/${payload.studentId}`,
+        `/student-payment/due/${payload.classId}/${payload.studentId}`,  providesTags: ["upstdp"],
     }),
     getStudentPaymentHistoryByClassAndStudentId: builder.query({
       query: (payload: TGetDueStudentPaymentByClassAndStudentId) =>
-        `/student-payment/single-history/${payload.classId}/${payload.studentId}`,
+        `/student-payment/single-history/${payload.classId}/${payload.studentId}`, providesTags: ["upstdp"],
     }),
   }),
 });

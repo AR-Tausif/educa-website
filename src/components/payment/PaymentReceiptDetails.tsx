@@ -36,7 +36,7 @@ console.log(receivedBy)
   const feesArray = Object.keys(fees).filter(
     (key) => key in fieldDisplayNames && fees[key] > 1
   );
-  console.log(feesArray);
+  console.log("###", fees);
   const totalFees = feesArray.reduce((sum, key) => sum + (fees[key] || 0), 0);
 
 

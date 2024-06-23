@@ -42,9 +42,6 @@ const TableBodyRow = ({ student }: { student: TStudent }) => {
           <StudentDeleteBtn studentId={student._id} />
           <StudentPaymentBtn student={student} />
           <StudentViewBtn studentId={student._id} />
-
-          
-          
         </div>
       </TableCell>
     </TableRow>

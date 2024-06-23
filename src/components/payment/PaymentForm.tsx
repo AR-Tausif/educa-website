@@ -193,12 +193,12 @@ export default function PaymentForm({
       updatedData,
       { classId: student.class._id, studentId: student._id }
     );
-    // router.push(`/${APP_ROUTES.ALL_STUDENT}/${student._id}`)
+    router.push(`/${APP_ROUTES.ALL_STUDENT}/${student._id}`)
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6 pb-5">
         <div className="grid grid-cols-2 gap-3 p-5">
           {paymentFields.map((itemField: PaymentField, index: number) => (
             <div
@@ -270,9 +270,9 @@ export default function PaymentForm({
             title="Total amounts"
             desc="Here listed all total amount and also calculating"
           />
-          <Separator />
+          <Separator className="mt-3" />
 
-          <div className="grid grid-cols-2 gap-3 divide-x-2 p-5">
+          <div className="grid grid-cols-2 gap-3 divide-x-2 px-5 pt-5">
             {collectionManageFields.map((item) => (
               <div
                 key={item.id}
@@ -352,13 +352,16 @@ export default function PaymentForm({
             ))}
           </div>
         </div>
+        <div className="w-full flex justify-center">
+         
         {updatePaymentLoading ? (
-          <Button type="button" disabled>
+          <Button type="button" disabled className="w-[20%]">
           <span className="pr-2">Please wait </span> <Loader className="animate-spin"/>
           </Button>
         ) : (
-          <Button type="submit">Submit</Button>
+          totalPayInputSum <= 0 ? <Button disabled className="w-[20%]">Submit</Button> :<Button type="submit" className="w-[20%]">Submit</Button>
         )}
+          </div>
       </form>
     </Form>
   );

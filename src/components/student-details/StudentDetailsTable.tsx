@@ -44,9 +44,7 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
     return <><span className="pr-2">Please wait </span> <Loader className="animate-spin"/></>
   }
   const datas: TStudent = studentDetail?.data;
-  console.log(error);
-  console.log(studentDetail);
-
+ 
   if (isLoading) <SkeletonCard />;
   return (
     <>
@@ -110,9 +108,9 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
       <div className="mt-16 pb-16">
         {/* <SectionTitle title="Pay Section" /> */}
         <div>
-          <h1 className="text-center text-black font-bold text-2xl pt-3 border-b">
+          <h5 className="text-center text-black font-bold text-2xl py-4 border-b">
             All Payment History
-          </h1>
+          </h5>
 
           <Table className="border">
             <TableCaption className="py-5">A list of your recent Payment History.</TableCaption>
@@ -173,15 +171,6 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
                         </SheetContent>
                       </Sheet>
                     </TableCell>
-
-                    {/* <TableCell className="font-medium   border-blue-600 border-t-4 border-b-4  text-blue-500">
-                      <FaPrint className="text-2xl" />
-                      2w
-                    </TableCell>
-
-                    <TableCell className="font-medium  border-blue-600 border-b-4 border-t-4 border-r-4 text-xl text-green-500">
-                      <FaArrowAltCircleDown className="text-2xl text-center ms-5 " />
-                    </TableCell> */}
                   </TableRow>
                 )
               )}

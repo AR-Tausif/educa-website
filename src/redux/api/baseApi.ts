@@ -36,7 +36,7 @@ const baseQuery = fetchBaseQuery({
 // };
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  tagTypes: ["classes", "students", "singleStudent", "users"],
+  tagTypes: ["classes", "students", "singleStudent", "users", "upstdp"],
   baseQuery,
   endpoints: () => ({}), // Endpoints are builded separate folder of each features "AuthAPI.ts" file
 });
