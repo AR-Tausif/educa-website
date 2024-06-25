@@ -1,3 +1,4 @@
+import FormHeadingContent from "@/components/FormHeadingContent";
 import { AddStudentForm } from "@/components/add-student/AddStudentForm";
 import PrivateRoute from "@/lib/PrivateRoute";
 import React from "react";
@@ -11,12 +12,12 @@ const AddStudentPage = async () => {
 
   
   return (
-    <PrivateRoute>
     <div className="">
-      <p className="text-4xl font-semibold text-center text-blue-600">Add Student Information</p>
+      <div className="flex justify-center items-center text-center">
+      <FormHeadingContent className="pb-5" title="Student Information" />
+      </div>
       <AddStudentForm />
     </div>
-    </PrivateRoute>
   );
 };
 

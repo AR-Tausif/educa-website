@@ -8,9 +8,22 @@ import ParentsInfo from "./ParentsInfo";
 import ProfileImageAndTitle from "./ProfileImageAndTitle";
 import Link from "next/link";
 import { APP_ROUTES } from "@/lib/utils";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
-import { FaArrowAltCircleDown, FaPrint } from "react-icons/fa";
-import { Sheet, SheetClose, SheetContent, SheetFooter, SheetTrigger } from "../ui/sheet";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../ui/table";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetFooter,
+  SheetTrigger,
+} from "../ui/sheet";
 import { Button } from "../ui/button";
 import SingleStudentReceipt from "../payment/SingleStudentReceipt";
 import { ScrollArea } from "../ui/scroll-area";
@@ -23,7 +36,6 @@ import SectionTitle from "../common/SectionTitle";
 import { TSinglePayInfo } from "@/types/payment.type";
 
 const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
-
   const { toPDF, targetRef } = usePDF({ filename: "page.pdf" });
   const {
     data: studentDetail,
@@ -41,15 +53,20 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
   });
 
   if (isLoading) {
-    return <><span className="pr-2">Please wait </span> <Loader className="animate-spin"/></>
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="pr-2">Please wait </span>{" "}
+        <Loader className="animate-spin" />
+      </div>
+    );
   }
   const datas: TStudent = studentDetail?.data;
- 
+
   if (isLoading) <SkeletonCard />;
   return (
     <>
       <ProfileImageAndTitle>
-        <div className="space-y-4">
+        <div className="space-y-2 text-center">
           <div className="">
             <p className="text-xl font-bold">
               {datas?.studentName ? datas.studentName : "N/A"}
@@ -57,7 +74,7 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
             <p className="text-sm">Student</p>
           </div>
           <div className="flex gap-2">
-            {datas?.fatherPhonNumber ? (
+            {/* {datas?.fatherPhonNumber ? (
               <p>
                 Email: <strong>{datas.fatherPhonNumber}</strong>
               </p>
@@ -65,8 +82,8 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
               <p>
                 Email: <strong>xxx@gmail.com</strong>
               </p>
-            )}{" "}
-            {" | "}
+            )}{" "} */}
+            <span className="font-bold text-green-500">|</span>
             {datas?.fatherPhonNumber ? (
               <p>
                 Phone: <strong>+880 {datas.fatherPhonNumber}</strong>
@@ -104,7 +121,7 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
           <ParentsInfo studentData={studentDetail?.data} />
         </div>
       </div>
-      
+
       <div className="mt-16 pb-16">
         {/* <SectionTitle title="Pay Section" /> */}
         <div>
@@ -113,7 +130,9 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
           </h5>
 
           <Table className="border">
-            <TableCaption className="py-5">A list of your recent Payment History.</TableCaption>
+            <TableCaption className="py-5">
+              A list of your recent Payment History.
+            </TableCaption>
             <TableHeader>
               <TableRow>
                 <TableHead>S.L</TableHead>
@@ -142,7 +161,9 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
                     </TableCell>
 
                     <TableCell className="font-medium  text-purple-700">
-                      {invoice.date ? new Date(invoice.date).toDateString() : "..."}
+                      {invoice.date
+                        ? new Date(invoice.date).toDateString()
+                        : "..."}
                     </TableCell>
 
                     <TableCell className="font-medium  text-black">

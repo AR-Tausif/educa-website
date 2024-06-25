@@ -27,7 +27,7 @@ const StudentPaymentStatusDialogBox = ({
       studentId,
       classId: studentClass?._id,
     });
-  console.log(stdPayDueData);
+
   return (
     <DialogContent className="sm:max-w-[825px]">
       <AlertDialogHeader>

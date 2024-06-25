@@ -5,21 +5,16 @@ import ProfileImageAndTitle from "@/components/all-student/ProfileImageAndTitle"
 import PaymentForm from "@/components/payment/PaymentForm";
 import { Toaster } from "@/components/ui/toaster";
 import { useGetSingleAcademicPaymentByClassIdQuery } from "@/redux/features/academic-payment/academicPaymentApi";
-import {
-  useGetDueStudentPaymentByClassAndStudentIdQuery,
-} from "@/redux/features/student-payment/studentPaymentApi";
+import { useGetDueStudentPaymentByClassAndStudentIdQuery } from "@/redux/features/student-payment/studentPaymentApi";
 import { useGetStudentByStudentIdQuery } from "@/redux/features/student/createStudentApi";
 import { StudentPayment } from "@/types/index";
-import {
-  TAcademicPayment,
-} from "@/types/payment.type";
+import { TAcademicPayment } from "@/types/payment.type";
 import { Loader } from "lucide-react";
 import { FormEvent, useState } from "react";
 
 import { useForm } from "react-hook-form";
 
 const SinglePaymentPage = ({ params }: { params: { studentId: string } }) => {
-
   const {
     data: singleStudentData,
     isLoading: studentIsloading,
@@ -96,17 +91,17 @@ const SinglePaymentPage = ({ params }: { params: { studentId: string } }) => {
     setPresentInputTotal(totalInputFees);
     console.log({ totalInputFees, stdPayDueData });
   };
-  
 
   if (academicSinglePaymentIsLoading) {
     return (
       <div className="text-xl h-full w-full flex justify-center items-center text-purple-700">
         {" "}
-        <span className="pr-2">Please wait </span> <Loader className="animate-spin"/>
+        <span className="pr-2">Please wait </span>{" "}
+        <Loader className="animate-spin" />
       </div>
     );
   }
-  console.log(singleStudentData?.data)
+  console.log(singleStudentData?.data);
   return (
     <>
       <Toaster />
@@ -114,9 +109,14 @@ const SinglePaymentPage = ({ params }: { params: { studentId: string } }) => {
         <div className="space-y-4">
           <div className="">
             <p className="text-xl font-bold">
-              {singleStudentData?.data.studentName ? singleStudentData.data.studentName : "N/A"}
+              {singleStudentData?.data.studentName
+                ? singleStudentData.data.studentName
+                : "N/A"}
             </p>
-            <p className="text-sm"> <strong>Class:</strong> {singleStudentData?.data?.class?.name} </p>
+            <p className="text-sm">
+              {" "}
+              <strong>Class:</strong> {singleStudentData?.data?.class?.name}{" "}
+            </p>
           </div>
         </div>
       </ProfileImageAndTitle>

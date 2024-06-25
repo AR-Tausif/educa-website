@@ -59,12 +59,10 @@ export default function PaymentForm({
     defaultValues: paymentDefaultVaues,
   });
 
-  const router = useRouter()
+  const router = useRouter();
 
   // Watch all the fields
   const formValues = form.watch();
-
-
 
   // Calculate the total sum
   const totalPayInputSum = paymentValidNames.reduce((sum, key) => {
@@ -193,12 +191,15 @@ export default function PaymentForm({
       updatedData,
       { classId: student.class._id, studentId: student._id }
     );
-    router.push(`/${APP_ROUTES.ALL_STUDENT}/${student._id}`)
+    router.push(`/${APP_ROUTES.ALL_STUDENT}/${student._id}`);
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6 pb-5">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-full space-y-6 pb-5"
+      >
         <div className="grid grid-cols-2 gap-3 p-5">
           {paymentFields.map((itemField: PaymentField, index: number) => (
             <div
@@ -252,7 +253,14 @@ export default function PaymentForm({
                     <FormItem>
                       <FormLabel>Due</FormLabel>
                       <FormControl>
-                        <Input value={itemField.id === "yearlyMonthFees" ? stdPayDueData?.dueFees.monthlyFees :stdPayDueData?.dueFees[itemField.id] || 0} disabled />
+                        <Input
+                          value={
+                            itemField.id === "yearlyMonthFees"
+                              ? stdPayDueData?.dueFees.monthlyFees
+                              : stdPayDueData?.dueFees[itemField.id] || 0
+                          }
+                          disabled
+                        />
                       </FormControl>
                     </FormItem>
                   )}
@@ -353,15 +361,21 @@ export default function PaymentForm({
           </div>
         </div>
         <div className="w-full flex justify-center">
-         
-        {updatePaymentLoading ? (
-          <Button type="button" disabled className="w-[20%]">
-          <span className="pr-2">Please wait </span> <Loader className="animate-spin"/>
-          </Button>
-        ) : (
-          totalPayInputSum <= 0 ? <Button disabled className="w-[20%]">Submit</Button> :<Button type="submit" className="w-[20%]">Submit</Button>
-        )}
-          </div>
+          {updatePaymentLoading ? (
+            <Button type="button" disabled className="w-[20%]">
+              <span className="pr-2">Please wait </span>{" "}
+              <Loader className="animate-spin" />
+            </Button>
+          ) : totalPayInputSum <= 0 ? (
+            <Button disabled className="w-[20%]">
+              Submit
+            </Button>
+          ) : (
+            <Button type="submit" className="w-[20%]">
+              Submit
+            </Button>
+          )}
+        </div>
       </form>
     </Form>
   );

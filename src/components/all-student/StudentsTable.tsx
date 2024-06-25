@@ -5,14 +5,11 @@ import {
   Table,
   TableBody,
   TableCaption,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "../ui/table";
-import {
-  useGetAllStudentQuery,
-} from "@/redux/features/student/createStudentApi";
+import { useGetAllStudentQuery } from "@/redux/features/student/createStudentApi";
 
 import { useRouter } from "next/navigation";
 
@@ -22,7 +19,6 @@ import { Loader } from "lucide-react";
 
 const StudentsTable = () => {
   const { data, isLoading } = useGetAllStudentQuery("");
-  
 
   if (isLoading) {
     return (
@@ -58,7 +54,7 @@ const StudentsTable = () => {
 
         <TableBody>
           {data?.data.map((student: TStudent, index: number) => (
-            <TableBodyRow   key={index} student={student} />
+            <TableBodyRow key={index} student={student} />
           ))}
         </TableBody>
       </Table>

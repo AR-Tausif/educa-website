@@ -30,11 +30,13 @@ import { useGetAllClassQuery } from "@/redux/features/class/createClasApi";
 import { useRouter } from "next/navigation";
 import { TResponse } from "@/types/global";
 import { APP_ROUTES } from "@/lib/utils";
+import { Loader } from "lucide-react";
 
 export function AddStudentForm() {
-  const router = useRouter()
-  const [createStudent] = useCreateStudentMutation();
-  const {data:allClass, error} = useGetAllClassQuery(undefined);
+  const router = useRouter();
+  const [createStudent, { isLoading: createStudentLoading }] =
+    useCreateStudentMutation();
+  const { data: allClass, error } = useGetAllClassQuery(undefined);
   const fieldGroupClasses =
     "grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-5";
   const form = useForm<z.infer<typeof CreateStudentFormSchema>>({
@@ -44,15 +46,15 @@ export function AddStudentForm() {
   async function onSubmit(data: z.infer<typeof CreateStudentFormSchema>) {
     console.log(data);
     try {
-      const res = await createStudent(data)  as TResponse;
+      const res = (await createStudent(data)) as TResponse;
       console.log(res);
-      if(res.error){
+      if (res.error) {
         return toast.error(res.error.data.message as string);
       }
       toast.success("Student created successfully");
-      router.push(`/${APP_ROUTES.ALL_STUDENT}`)
-    } catch (err:any) {
-      toast.error(err.message as string | "Sorry,please try again" );
+      router.push(`/${APP_ROUTES.ALL_STUDENT}`);
+    } catch (err: any) {
+      toast.error(err.message as string | "Sorry,please try again");
       console.log(err);
     }
   }
@@ -60,7 +62,6 @@ export function AddStudentForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="full space-y-6">
-        <FormHeadingContent title="Student Information" />
         <div className={fieldGroupClasses}>
           <FormField
             control={form.control}
@@ -93,11 +94,13 @@ export function AddStudentForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent className="bg-white">
-                    {
-                      allClass?.data.map((classItem:{_id:string; name:string})=>(
-                        <SelectItem key={classItem._id} value={classItem._id}>{classItem.name}</SelectItem>
-                      ))
-                    }
+                    {allClass?.data.map(
+                      (classItem: { _id: string; name: string }) => (
+                        <SelectItem key={classItem._id} value={classItem._id}>
+                          {classItem.name}
+                        </SelectItem>
+                      )
+                    )}
                   </SelectContent>
                 </Select>
 
@@ -434,9 +437,16 @@ export function AddStudentForm() {
 
         <div className="flex flex-row-reverse">
           <div className="">
-            <Button className="mr-auto" type="submit">
-              Submit
-            </Button>
+            {createStudentLoading ? (
+              <Button type="button" disabled className="">
+                <span className="pr-2">Creating Student </span>{" "}
+                <Loader className="animate-spin" />
+              </Button>
+            ) : (
+              <Button className="mr-auto" type="submit">
+                Submit
+              </Button>
+            )}
           </div>
         </div>
       </form>

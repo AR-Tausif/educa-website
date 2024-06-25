@@ -5,6 +5,7 @@ import { Badge } from "../ui/badge";
 import { TableBody, TableCell, TableRow } from "../ui/table";
 import { Skeleton } from "../ui/skeleton";
 import { TPaymentHistory } from "@/types/payment.type";
+import toTitleCase from "@/lib/toTitleCase";
 
 export default function HistoryDishTableBody() {
   const { data, isLoading, isFetching } =
@@ -22,7 +23,7 @@ export default function HistoryDishTableBody() {
   }
   return (
     <TableBody>
-      {data?.data?.slice(0,6).map((item: TPaymentHistory, index: number) => (
+      {data?.data?.slice(0,10).map((item: TPaymentHistory, index: number) => (
         <TableRow key={index}>
           <TableCell>
             <div className="font-medium">{item?.student?.studentName}</div>
@@ -30,14 +31,14 @@ export default function HistoryDishTableBody() {
               {item?.student?.fatherEmail || ""}
             </div>
           </TableCell>
-          <TableCell className="hidden xl:table-column">Sale</TableCell>
+          <TableCell className="">{toTitleCase(item.class.name)}</TableCell>
           <TableCell className="hidden xl:table-column">
             <Badge className="text-xs" variant="outline">
               Approved
             </Badge>
           </TableCell>
-          <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-            2023-06-23
+          <TableCell className="">
+            { new Date(item?.date).toDateString()}
           </TableCell>
           <TableCell className="text-right">{item?.cashCollection} Tk</TableCell>
         </TableRow>
