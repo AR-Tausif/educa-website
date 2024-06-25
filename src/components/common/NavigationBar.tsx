@@ -53,6 +53,7 @@ import { logOut } from "@/redux/features/auth/authSlice";
 import HandleLogOut from "@/lib/HandleLogOut";
 import { routes } from "./SideNavigationBar";
 import { APP_ROUTES } from "@/lib/utils";
+import NavLinks from "./NavLinks";
 
 const NavigationBar = () => {
   return (
@@ -71,18 +72,7 @@ const NavigationBar = () => {
           </SheetTrigger>
           <SheetContent side="left" className="flex flex-col w-96">
             <ScrollArea className="p-2 ">
-              <nav className="font-medium">
-              {routes.map((route) => (
-              <Link
-                key={route.path}
-                href={route.path}
-                className="flex mt-2 items-center gap-3 rounded-lg hover:bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
-              >
-                <route.icon className="h-4 w-4" />
-                <p className="text-sm">{route.title} </p>
-              </Link>
-            ))}
-              </nav>
+              <NavLinks/>
             </ScrollArea>
           </SheetContent>
         </Sheet>

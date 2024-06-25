@@ -122,83 +122,90 @@ const StudentDetailsTable = ({ studentId }: { studentId: string }) => {
         </div>
       </div>
 
-      <div className="mt-16 pb-16">
-        {/* <SectionTitle title="Pay Section" /> */}
-        <div>
-          <h5 className="text-center text-black font-bold text-2xl py-4 border-b">
-            All Payment History
-          </h5>
-
-          <Table className="border">
-            <TableCaption className="py-5">
-              A list of your recent Payment History.
-            </TableCaption>
-            <TableHeader>
-              <TableRow>
-                <TableHead>S.L</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Class</TableHead>
-                <TableHead>Payment Date</TableHead>
-                <TableHead>View</TableHead>
-                {/* <TableHead>Print </TableHead>
-                <TableHead>Download</TableHead> */}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {stdPayHistoryData?.data?.map(
-                (invoice: TSinglePayInfo, index: number) => (
-                  <TableRow key={invoice._id}>
-                    <TableCell className=" text-xl">
-                      <Checkbox id="terms" className="mr-3" />
-                      {index + 1}
-                    </TableCell>
-
-                    <TableCell className="font-medium ">
-                      {studentDetail?.data?.studentName}
-                    </TableCell>
-                    <TableCell className="font-medium">
-                      {studentDetail?.data?.class?.name}
-                    </TableCell>
-
-                    <TableCell className="font-medium  text-purple-700">
-                      {invoice.date
-                        ? new Date(invoice.date).toDateString()
-                        : "..."}
-                    </TableCell>
-
-                    <TableCell className="font-medium  text-black">
-                      <Sheet>
-                        <SheetTrigger asChild>
-                          <IoEye className="text-2xl" />
-                        </SheetTrigger>
-                        <SheetContent>
-                          <ScrollArea className="h-[90vh] w-auto">
-                            <SingleStudentReceipt
-                              targetRef={targetRef}
-                              studentDetail={studentDetail?.data}
-                              singlePayInfo={invoice}
-                            />
-                            <SheetFooter>
-                              <SheetClose asChild>
-                                <Button
-                                  onClick={() => toPDF()}
-                                  className="mr-16"
-                                >
-                                  Download PDF
-                                </Button>
-                              </SheetClose>
-                            </SheetFooter>
-                          </ScrollArea>
-                        </SheetContent>
-                      </Sheet>
-                    </TableCell>
-                  </TableRow>
-                )
-              )}
-            </TableBody>
-          </Table>
+      {stdPayHistoryLoading ? (
+        <div className="flex justify-center items-center h-screen">
+          <span className="pr-2">Please wait </span>{" "}
+          <Loader className="animate-spin" />
         </div>
-      </div>
+      ) : (
+        <div className="mt-16 pb-16">
+          {/* <SectionTitle title="Pay Section" /> */}
+          <div>
+            <h5 className="text-center text-black font-bold text-xl py-4 mb-5 border-b">
+              All Payment History
+            </h5>
+
+            <Table className="border">
+              <TableCaption className="py-5">
+                A list of your recent Payment History.
+              </TableCaption>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>S.L</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Class</TableHead>
+                  <TableHead>Payment Date</TableHead>
+                  <TableHead>View</TableHead>
+                  {/* <TableHead>Print </TableHead>
+                <TableHead>Download</TableHead> */}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {stdPayHistoryData?.data?.map(
+                  (invoice: TSinglePayInfo, index: number) => (
+                    <TableRow key={invoice._id}>
+                      <TableCell className=" text-xl">
+                        <Checkbox id="terms" className="mr-3" />
+                        {index + 1}
+                      </TableCell>
+
+                      <TableCell className="font-medium ">
+                        {studentDetail?.data?.studentName}
+                      </TableCell>
+                      <TableCell className="font-medium">
+                        {studentDetail?.data?.class?.name}
+                      </TableCell>
+
+                      <TableCell className="font-medium  text-purple-700">
+                        {invoice.date
+                          ? new Date(invoice.date).toDateString()
+                          : "..."}
+                      </TableCell>
+
+                      <TableCell className="font-medium  text-black">
+                        <Sheet>
+                          <SheetTrigger asChild>
+                            <IoEye className="text-2xl" />
+                          </SheetTrigger>
+                          <SheetContent>
+                            <ScrollArea className="h-[90vh] w-auto">
+                              <SingleStudentReceipt
+                                targetRef={targetRef}
+                                studentDetail={studentDetail?.data}
+                                singlePayInfo={invoice}
+                              />
+                              <SheetFooter>
+                                <SheetClose asChild>
+                                  <Button
+                                    onClick={() => toPDF()}
+                                    className="mr-16"
+                                  >
+                                    Download PDF
+                                  </Button>
+                                </SheetClose>
+                              </SheetFooter>
+                            </ScrollArea>
+                          </SheetContent>
+                        </Sheet>
+                      </TableCell>
+                    </TableRow>
+                  )
+                )}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      )}
     </>
   );
 };

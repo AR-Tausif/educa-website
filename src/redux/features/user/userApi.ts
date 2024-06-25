@@ -36,7 +36,7 @@ const authApi = baseApi.injectEndpoints({
         url: `/user/counting-document`,
         method: "GET",
       }),
-      providesTags: ["users", "upstdp"],
+      providesTags: ["users", "classes", "students", "singleStudent", "upstdp"],
     }),
   }),
 });
