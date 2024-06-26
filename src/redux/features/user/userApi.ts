@@ -31,6 +31,13 @@ const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["users"],
     }),
+    removeAdminUserById: builder.mutation({
+      query: (userId) => ({
+        url: `/user/remove-admin/${userId}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["users"]
+    }),
     getCountingDocs: builder.query({
       query: () => ({
         url: `/user/counting-document`,
@@ -46,5 +53,6 @@ export const {
   useDeleteUserByIdMutation,
   useBlockingUserByIdMutation,
   useMakeAdminUserByIdMutation,
+  useRemoveAdminUserByIdMutation,
   useGetCountingDocsQuery,
 } = authApi;

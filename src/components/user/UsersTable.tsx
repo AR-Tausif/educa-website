@@ -5,6 +5,7 @@ import {
   useDeleteUserByIdMutation,
   useGetAllUserQuery,
   useMakeAdminUserByIdMutation,
+  useRemoveAdminUserByIdMutation,
 } from "@/redux/features/user/userApi";
 
 import { TableCell, TableRow } from "@/components/ui/table";
@@ -32,6 +33,7 @@ const UsersTable = () => {
   const [deleteUserById] = useDeleteUserByIdMutation();
   const [blockingUserById] = useBlockingUserByIdMutation();
   const [makeAdminUserById] = useMakeAdminUserByIdMutation();
+  const [removeAdminUserById] = useRemoveAdminUserByIdMutation();
 
   const handleDelete = async (_id: string) => {
     try {
@@ -52,6 +54,14 @@ const UsersTable = () => {
     console.log("delete");
     try {
       const res = await makeAdminUserById(_id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleAdminMakingUser = async (_id: string) => {
+    console.log("delete");
+    try {
+      const res = await removeAdminUserById(_id);
     } catch (err) {
       console.log(err);
     }
@@ -91,7 +101,7 @@ const UsersTable = () => {
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
                   {user.role == "admin" ? (<AlertDialogAction
-                    onClick={() => handleUserMakingAdmin(user._id)}
+                    onClick={() => handleAdminMakingUser(user._id)}
                   >
                     Make User
                   </AlertDialogAction>) : (<AlertDialogAction
