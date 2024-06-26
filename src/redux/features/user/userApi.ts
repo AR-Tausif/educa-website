@@ -2,7 +2,6 @@ import { baseApi } from "@/redux/api/baseApi";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    
     getAllUser: builder.query({
       query: () => ({
         url: `/user/all-user`,
@@ -36,7 +35,7 @@ const authApi = baseApi.injectEndpoints({
         url: `/user/remove-admin/${userId}`,
         method: "PATCH",
       }),
-      invalidatesTags: ["users"]
+      invalidatesTags: ["users"],
     }),
     getCountingDocs: builder.query({
       query: () => ({
@@ -44,6 +43,14 @@ const authApi = baseApi.injectEndpoints({
         method: "GET",
       }),
       providesTags: ["users", "classes", "students", "singleStudent", "upstdp"],
+    }),
+    editUserNameEmail: builder.mutation({
+      query: (userInfo) => ({
+        url: "/user/edit-info",
+        method: "PATCH",
+        body: userInfo,
+      }),
+      invalidatesTags: ["users"],
     }),
   }),
 });
@@ -55,4 +62,5 @@ export const {
   useMakeAdminUserByIdMutation,
   useRemoveAdminUserByIdMutation,
   useGetCountingDocsQuery,
+  useEditUserNameEmailMutation,
 } = authApi;

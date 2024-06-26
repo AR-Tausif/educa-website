@@ -90,7 +90,7 @@ export default function ChangePassForm() {
             <FormItem>
               <FormLabel>New Password</FormLabel>
               <FormControl>
-                <Input placeholder="new password" {...field} />
+                <Input type="password" placeholder="new password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -103,7 +103,7 @@ export default function ChangePassForm() {
             <FormItem>
               <FormLabel>Confirm Password</FormLabel>
               <FormControl>
-                <Input placeholder="confirm password" {...field} />
+                <Input type="password" placeholder="confirm password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
