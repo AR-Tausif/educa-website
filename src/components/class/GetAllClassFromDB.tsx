@@ -18,7 +18,7 @@ import {
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { ScrollArea } from "../ui/scroll-area";
 import { UpdateAcademicPaymentForm } from "../payment/UpdateAcademicPaymentForm";
-import { GanttChart } from "lucide-react";
+import { GanttChart, Loader } from "lucide-react";
 import ViewSingleAcademicPayment from "../payment/ViewSingleAcademicPayment";
 
 const GetAllClassFromDB = () => {
@@ -36,6 +36,15 @@ const GetAllClassFromDB = () => {
     const res = await deleteClassById(_id)
     console.log(res)
 
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="pr-2">Please wait </span>{" "}
+        <Loader className="animate-spin" />
+      </div>
+    );
   }
   return (
     <>

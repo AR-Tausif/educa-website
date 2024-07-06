@@ -6,9 +6,13 @@ const reportsPaymentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getStudentReportPayment: builder.query({
       query: () => ("/report/yearly-payment-report"),
-      providesTags:["students", "upstdp"]
+      providesTags: ["students", "upstdp"]
+    }),
+    getFilterStudentGender: builder.query({
+      query: () => ("/report/filter-student-gender"),
+      providesTags: ["students", "upstdp"]
     }),
   }),
 })
 
-export const {  useGetStudentReportPaymentQuery} = reportsPaymentApi;
+export const { useGetStudentReportPaymentQuery, useGetFilterStudentGenderQuery } = reportsPaymentApi;

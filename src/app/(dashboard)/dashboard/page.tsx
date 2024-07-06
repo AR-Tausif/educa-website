@@ -1,21 +1,7 @@
-import HistoryDish from "@/components/common/HistoryDish";
 import PaymentBarChart from "@/components/dashboard/BarChart";
 import CountingBox from "@/components/dashboard/CountingBox";
 import DashboardSideActionsBar from "@/components/dashboard/DashboardSideActionsBar";
-import PaymentHistoryArea from "@/components/dashboard/PaymentHistoryArea";
-import StdTable from "@/components/dashboard/StdTable";
 import StudentGenderPieChart from "@/components/dashboard/StudentGenderPieChart";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Activity,
-  CreditCard,
-  DollarSign,
-  EllipsisVertical,
-  GraduationCap,
-  Users,
-} from "lucide-react";
-
 const Dashboard = () => {
   const countingArr = [
     {
