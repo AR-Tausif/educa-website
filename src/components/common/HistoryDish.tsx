@@ -14,7 +14,7 @@ import HistoryDishTableBody from "./HistoryDishTableBody";
 
 const HistoryDish = () => {
   return (
-    <div className="w-full">
+    <div className="basis-8/12">
       <Card className="xl:col-span-2" x-chunk="dashboard-01-chunk-4">
         <CardHeader className="flex flex-row items-center">
           <div className="grid gap-2">

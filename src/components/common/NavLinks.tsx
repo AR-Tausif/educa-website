@@ -2,16 +2,21 @@
 
 import {
   Bell,
+  HandCoins,
   Home,
   LineChart,
   Package,
   Package2,
+  School,
+  Shapes,
   ShoppingCart,
+  UserRoundPlus,
   Users,
 } from "lucide-react";
 import { APP_ROUTES } from "@/lib/utils";
 import { useAppSelector } from "@/redux/hooks";
 import Link from "next/link";
+import { PiStudentBold } from "react-icons/pi";
 
 const NavLinks = () => {
   const routes = [
@@ -22,12 +27,12 @@ const NavLinks = () => {
     },
     {
       path: `/${APP_ROUTES.ALL_CLASS}`,
-      icon: ShoppingCart,
+      icon: School,
       title: "All Class",
     },
     {
       path: `/${APP_ROUTES.ALL_STUDENT}`,
-      icon: Package,
+      icon: PiStudentBold,
       title: "All Student",
     },
     {
@@ -38,17 +43,17 @@ const NavLinks = () => {
     // =======
     {
       path: `/${APP_ROUTES.ALL_PAYMENT_HISTORY}`,
-      icon: Users,
+      icon: HandCoins,
       title: "Payment History",
     },
     {
       path: `/${APP_ROUTES.CREATE_STUDENT}`,
-      icon: Users,
+      icon: UserRoundPlus,
       title: "Add Student",
     },
     {
       path: `/${APP_ROUTES.CLASS_STUDENT}`,
-      icon: LineChart,
+      icon: Shapes ,
       title: "Class Student",
     },
   ];
@@ -60,17 +65,17 @@ const NavLinks = () => {
     },
     {
       path: `/${APP_ROUTES.ALL_STUDENT}`,
-      icon: Package,
+      icon: PiStudentBold,
       title: "All Student",
     },
     {
       path: `/${APP_ROUTES.ALL_PAYMENT_HISTORY}`,
-      icon: Users,
+      icon: HandCoins,
       title: "Payment History",
     },
     {
       path: `/${APP_ROUTES.CLASS_STUDENT}`,
-      icon: LineChart,
+      icon: Shapes,
       title: "Class Student",
     },
   ];

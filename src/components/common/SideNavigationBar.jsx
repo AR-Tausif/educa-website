@@ -5,10 +5,11 @@ import {
   LineChart,
   Package,
   Package2,
+  School,
   ShoppingCart,
   Users,
 } from "lucide-react";
-import { Badge } from "../ui/badge";
+import { PiStudentBold  } from "react-icons/pi";
 import { APP_ROUTES } from "@/lib/utils";
 import Image from "next/image";
 import WebLogo from "@/assets/web-logo.png";
@@ -22,12 +23,12 @@ export const routes = [
   },
   {
     path: `/${APP_ROUTES.ALL_CLASS}`,
-    icon: ShoppingCart,
+    icon: School,
     title: "All Class",
   },
   {
     path: `/${APP_ROUTES.ALL_STUDENT}`,
-    icon: Package,
+    icon: PiStudentBold,
     title: "All Student",
   },
   {

@@ -1,8 +1,10 @@
 import HistoryDish from "@/components/common/HistoryDish";
+import PaymentBarChart from "@/components/dashboard/BarChart";
 import CountingBox from "@/components/dashboard/CountingBox";
 import DashboardSideActionsBar from "@/components/dashboard/DashboardSideActionsBar";
 import PaymentHistoryArea from "@/components/dashboard/PaymentHistoryArea";
 import StdTable from "@/components/dashboard/StdTable";
+import StudentGenderPieChart from "@/components/dashboard/StudentGenderPieChart";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -38,7 +40,7 @@ const Dashboard = () => {
   ];
   return (
     <>
-      <div className="flex gap-6">
+      <div className="gap-6">
         <div className="space-y-6 w-full">
           {/* counting ... */}
           <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-4">
@@ -46,9 +48,14 @@ const Dashboard = () => {
               <CountingBox key={item.id} item={item} />
             ))}
           </div>
-          <HistoryDish />
+          <div className="space-y-4">
+            <div className="flex flex-col md:flex-row justify-between gap-4">
+              <PaymentBarChart />
+              <StudentGenderPieChart />
+            </div>
+            <DashboardSideActionsBar />
+          </div>
         </div>
-        <DashboardSideActionsBar/>
       </div>
     </>
   );
