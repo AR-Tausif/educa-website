@@ -31,5 +31,5 @@ This repository contains the frontend part of the School Management Fees System,
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/nextjs-frontend.git
-   cd nextjs-frontend
+   git clone https://github.com/AR-Tausif/educa-website.git
+   cd educa-website
