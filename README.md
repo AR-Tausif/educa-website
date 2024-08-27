@@ -26,6 +26,7 @@ This repository contains the frontend part of the School Management Fees System,
 
 - Node.js
 - npm (or yarn)
+- TypeScript
 
 ### Installation
 
