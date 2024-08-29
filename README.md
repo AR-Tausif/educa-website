@@ -2,6 +2,8 @@
 
 This repository contains the frontend part of the School Management Fees System, a web application designed for managing school fees. The frontend is built using Next.js, TailwindCSS, Shadcnui, React-PDF, Redux, and React Query.
 
+![educa-website-three vercel app_dashboard](https://github.com/user-attachments/assets/a0f19cd1-872c-4485-a611-3dd9ba49de67)
+
 ## Features
 
 - **Student Creation**: Easily add new students to the system.
