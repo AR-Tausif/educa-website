@@ -34,7 +34,7 @@ const GetAllClassFromDB = () => {
 
   const handleDeleteClassById = async (_id: string) => {
     const res = await deleteClassById(_id)
-    console.log(res)
+   
 
   }
 

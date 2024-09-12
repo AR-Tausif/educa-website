@@ -81,7 +81,7 @@ export function CreateAcademicPaymentForm() {
             }
         };
 
-        console.log(classInfo);
+
 
         try {
             const res = await createClass(classInfo) as TResponse;

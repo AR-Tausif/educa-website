@@ -22,7 +22,7 @@ const PaymentHistoryReceipt = ({ singlePayInfo, studentName }: TProps) => {
         date:payDate,
         ...paymentInfo
     } = singlePayInfo;
-    console.log(singlePayInfo)
+
      // Type assertion for paymentInfo
      const academicInputDatas = paymentInfo as Record<string, number>;
  
@@ -30,7 +30,7 @@ const PaymentHistoryReceipt = ({ singlePayInfo, studentName }: TProps) => {
   const { discountOnFees: _, cashCollection: __, ...fees } = academicInputDatas;
 
     const feesArray = Object.keys(fees).filter(key => key in fieldDisplayNames  && (fees[key] > 1));
-    console.log(feesArray)
+
     const totalFees = feesArray.reduce((sum, key) => sum + (fees[key] || 0), 0);
 
 

@@ -169,7 +169,7 @@ export default function PaymentForm({
   ];
 
   async function onSubmit(data: z.infer<typeof StudentPaymentFormSchema>) {
-    console.log("onsubmit", data);
+
     const updatedData = {
       monthly: Number(data.monthly) | 0,
       admission: Number(data.admission) | 0,

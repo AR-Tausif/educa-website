@@ -81,7 +81,7 @@ export function UpdateAcademicPaymentForm({classId}:{classId: string}) {
             }
         };
 
-        console.log(classInfo);
+      
 
         try {
             const res = await editClass({classId, classInfo}) as TResponse;

@@ -26,7 +26,7 @@ import { EditStudentFormSchema } from "@/lib/zod/editClassFormSchema";
 import { TResponse } from "@/types/global";
 
 const EditClassModalForm = ({classId}:{classId: string}) => {
-    console.log(classId)
+
   const form = useForm<z.infer<typeof EditStudentFormSchema>>({
     resolver: zodResolver(EditStudentFormSchema),
   });
@@ -35,7 +35,7 @@ const EditClassModalForm = ({classId}:{classId: string}) => {
   
 
   async function onSubmit(data: z.infer<typeof EditStudentFormSchema>) {
-    console.log(data);
+
     const classInfo = {
       name: data.name,
     };
@@ -48,7 +48,7 @@ const EditClassModalForm = ({classId}:{classId: string}) => {
     }
 } catch (error) {
       toast.error("Sorry, please try again.")
-     console.log(error)
+
    }
   }
   return (

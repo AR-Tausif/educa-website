@@ -31,8 +31,6 @@ export default function SignUpForm() {
   const dispatch = useDispatch();   
    const router = useRouter();
 
-  console.log("Login data: ==>", data);
-  console.log("Login error: ==>", error);
   const form = useForm<z.infer<typeof SignUpUserFormSchema>>({
     resolver: zodResolver(SignUpUserFormSchema),
   });
@@ -44,18 +42,18 @@ export default function SignUpForm() {
       fullName: data.fullName,
       phoneNumber: parseInt(data.phoneNumber),
     };
-    console.log(userInfo)
+
     const toastId = toast.loading("Please wait for moments")
     try {
       const loginResponse:any= await register(userInfo).unwrap();
-      console.log(loginResponse);
+ 
     //   const user = VerifyToken(loginResponse.data.accessToken);
     //   dispatch(setUser({ user, token: loginResponse.data.accessToken }));      
       router.push("/login");
       toast.success(loginResponse.message,{id:toastId})
       
     } catch (error) {
-      console.log(error)
+
       toast.error("Something went wrong!", {id:toastId})
     }
   }

@@ -2,10 +2,10 @@ import { useGetSingleAcademicPaymentByClassIdQuery } from "@/redux/features/acad
 
 const ViewSingleAcademicPayment = ({ classId }: { classId: string }) => {
     const { data: academicSinglePaymentData, error, } = useGetSingleAcademicPaymentByClassIdQuery({ classId })
-    console.log(academicSinglePaymentData)
+
     // Type assertion for paymentInfo
     const academicInputDatas = academicSinglePaymentData?.data as Record<string, number>;
-    console.log(academicInputDatas)
+
     //     console.log(error)
     //   // Exclude certain fields
     //   const {  class:___, student, createdAt, updatedAt, createdBy, year, ...fees } = academicInputDatas;

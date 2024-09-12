@@ -1,7 +1,6 @@
 import SingleClassStudents from "@/components/class-student/SingleClassStudents";
 
 const DetailsPage = ({ params }: { params: { classId: string } }) => {
-  console.log(params);
 
   return (
     <div>

@@ -59,7 +59,7 @@ export default function PaymentBarChart() {
       chartData[d.month].others = d.others;
     }
   );
-  console.log(chartData);
+
   return (
     <div className="border w-full basis-3/4 p-4 rounded-lg">
       <p className="font-semibold text-[#0E3E1E]">Earnings This Year</p>

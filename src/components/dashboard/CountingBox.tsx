@@ -22,7 +22,7 @@ type TProps = {
 };
 const CountingBox = ({ item }: TProps) => {
   const { data, isLoading, isFetching } = useGetCountingDocsQuery(undefined);
-  console.log("sdkfj", data);
+
   const { title, icon, number } = item;
   let desc: number = 0;
 

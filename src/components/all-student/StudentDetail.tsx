@@ -52,7 +52,6 @@ const StudentDetails = ({ studentId }: { studentId: string }) => {
   if (isLoading) {
     return <h2 className="text-2xl text-center">Loading data...</h2>;
   }
-  console.log("singleStudent ==>", studentDetail?.data);
   const {
     studentName,
     dateOfBirth,

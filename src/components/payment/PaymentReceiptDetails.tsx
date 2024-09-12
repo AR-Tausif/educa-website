@@ -21,7 +21,7 @@ const PaymentReceiptDetails = ({ singlePayInfo, studentDetail }: TProps) => {
   } = singlePayInfo;
   // Type assertion for paymentInfo
   const academicInputDatas = paymentInfo as Record<string, number>;
-console.log(receivedBy)
+
   // Exclude certain fields
   const {
     discountOnFees: _,
@@ -36,7 +36,7 @@ console.log(receivedBy)
   const feesArray = Object.keys(fees).filter(
     (key) => key in fieldDisplayNames && fees[key] > 1
   );
-  console.log("###", fees);
+
   const totalFees = feesArray.reduce((sum, key) => sum + (fees[key] || 0), 0);
 
 

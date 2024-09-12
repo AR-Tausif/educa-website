@@ -44,10 +44,10 @@ export function AddStudentForm() {
   });
 
   async function onSubmit(data: z.infer<typeof CreateStudentFormSchema>) {
-    console.log(data);
+
     try {
       const res = (await createStudent(data)) as TResponse;
-      console.log(res);
+
       if (res.error) {
         return toast.error(res.error.data.message as string);
       }
@@ -55,7 +55,6 @@ export function AddStudentForm() {
       router.push(`/${APP_ROUTES.ALL_STUDENT}`);
     } catch (err: any) {
       toast.error(err.message as string | "Sorry,please try again");
-      console.log(err);
     }
   }
 

@@ -24,18 +24,17 @@ import { TResponse } from "@/types/global";
 const StudentDeleteBtn = ({ studentId }: { studentId: string }) => {
   const [deleteStudentById] = useDeleteStudentByIdMutation();
   const handleDelete = async (_id: string) => {
-    console.log("delete");
-    console.log(_id);
+
     try {
       const toastId = toast.loading("Student deleting..");
 
       const res = await deleteStudentById(_id) as TResponse;
-      console.log("delete student ==>", res);
+
       if (res.data) {
         toast.success("Student deleted successfully", { id: toastId });
       }
     } catch (err: any) {
-      console.log(err);
+ 
       toast.success(err.message || "Something went wrong");
     }
   };

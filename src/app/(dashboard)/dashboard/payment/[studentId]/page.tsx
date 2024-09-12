@@ -82,14 +82,14 @@ const SinglePaymentPage = ({ params }: { params: { studentId: string } }) => {
   };
 
   const handleCalculateAllFees = () => {
-    console.log({ formData });
+
     const { discountOnFees, cashCollection, ...academicInputDatas } = formData;
     const totalInputFees = Object.values(academicInputDatas).reduce(
       (sum, value) => sum + value,
       0
     );
     setPresentInputTotal(totalInputFees);
-    console.log({ totalInputFees, stdPayDueData });
+
   };
 
   if (academicSinglePaymentIsLoading) {
@@ -101,7 +101,7 @@ const SinglePaymentPage = ({ params }: { params: { studentId: string } }) => {
       </div>
     );
   }
-  console.log(singleStudentData?.data);
+
   return (
     <>
       <Toaster />

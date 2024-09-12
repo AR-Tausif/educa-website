@@ -49,13 +49,13 @@ export default function ChangePassForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
+
     try {
       const res = await changePassword({
         currentPassword: values.currentPassword,
         newPassword:values.newPassword
       }) as TResponse
-      console.log("response", res)
+
       if(res?.error){
         toast.error(res.error.data.message || "something went wrong")
         } else{

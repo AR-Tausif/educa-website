@@ -33,8 +33,7 @@ export default function LoginForm() {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  console.log("Login data: ==>", data);
-  console.log("Login error: ==>", error);
+
   const form = useForm<z.infer<typeof LoginUserFormSchema>>({
     resolver: zodResolver(LoginUserFormSchema),
   });
@@ -47,14 +46,14 @@ export default function LoginForm() {
     const toastId = toast.loading("Please wait for moments");
     try {
       const loginResponse: any = await login(userInfo).unwrap();
-      console.log(loginResponse);
+     
       const user = VerifyToken(loginResponse.data.accessToken);
       dispatch(setUser({ user, token: loginResponse.data.accessToken }));
       toast.success(loginResponse.message, { id: toastId });
       Cookies.set('accessToken', loginResponse.data.accessToken);
       router.push("/dashboard");
     } catch (error:any) {
-      console.log(error);
+
       toast.error(error?.data?.message || "Something went wrong!", { id: toastId });
     }
   }

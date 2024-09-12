@@ -27,11 +27,11 @@ if(isLoading){
   const genderArrData = filterData?.data.map((item:TGenItem)=> ({
     gender: item.gender,
     percentage: item.percentage,
-    fill: item.gender === "Male" ?  "#FE784A": "#7439E8",
+    fill: item.gender === "male" ?  "#FE784A": "#7439E8",
   }))
   const malePercentage = filterData?.data.find((item:TGenItem) => item.gender === "male")?.percentage;
   const femalePercentage = filterData?.data.find((item:TGenItem) => item.gender === "female")?.percentage;
-  console.log({malePercentage, femalePercentage})
+
   return (
     <Card className="w-full max-w-sm sm:mx-auto md:mx-auto">
       <CardHeader className="pb-0">

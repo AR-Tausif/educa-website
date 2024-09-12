@@ -8,7 +8,7 @@ const UpdatePaymentMutation = async (
   formData: any,
   info: TInfo
 ) => {
-  console.log("log", formData);
+;
 
   const updatedData: TUpdateStudentPayment = {
     class: info.classId,
@@ -30,12 +30,12 @@ const UpdatePaymentMutation = async (
     discountOnFees: formData.discountOnFees,
     cashCollection: formData.cashCollection,
   };
-  console.log({ updatedData });
+
 
   try {
-    console.log("updated data : ====> ", updatedData);
+
     const res = await updateStudentByClassIdAndStudentId(updatedData);
-    console.log(res);
+
   } catch (error) {
     console.log(error);
   }

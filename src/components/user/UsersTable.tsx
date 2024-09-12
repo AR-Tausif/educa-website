@@ -39,11 +39,11 @@ const UsersTable = () => {
     try {
       const res = await deleteUserById(_id);
     } catch (err) {
-      console.log(err);
+  
     }
   };
   const handleUserBlocking = async (_id: string) => {
-    console.log("delete");
+
     try {
       const res = await blockingUserById(_id);
     } catch (err) {
@@ -51,7 +51,7 @@ const UsersTable = () => {
     }
   };
   const handleUserMakingAdmin = async (_id: string) => {
-    console.log("delete");
+ 
     try {
       const res = await makeAdminUserById(_id);
     } catch (err) {
@@ -59,7 +59,7 @@ const UsersTable = () => {
     }
   };
   const handleAdminMakingUser = async (_id: string) => {
-    console.log("delete");
+
     try {
       const res = await removeAdminUserById(_id);
     } catch (err) {

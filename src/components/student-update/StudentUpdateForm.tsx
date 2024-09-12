@@ -71,7 +71,7 @@ export default function UpdateStudentForm({
       router.push(`/${APP_ROUTES.ALL_STUDENT}/${studentId}`);
     } catch (err: any) {
       toast.error(err.message as string | "Sorry,please try again");
-      console.log(err);
+
     }
   }
 
