@@ -27,7 +27,7 @@ if(isLoading){
   const genderArrData = filterData?.data.map((item:TGenItem)=> ({
     gender: item.gender,
     percentage: item.percentage,
-    fill: item.gender === "male" ?  "#FE784A": "#7439E8",
+    fill: item.gender === "male" ?  "#7439E8": "#FE784A",
   }))
   const malePercentage = filterData?.data.find((item:TGenItem) => item.gender === "male")?.percentage;
   const femalePercentage = filterData?.data.find((item:TGenItem) => item.gender === "female")?.percentage;
