@@ -2,7 +2,8 @@
 
 This repository contains the frontend part of the School Management Fees System, a web application designed for managing school fees. The frontend is built using Next.js, TailwindCSS, Shadcnui, React-PDF, Redux, and React Query.
 
-![educa-website-three vercel app_dashboard](https://github.com/user-attachments/assets/a0f19cd1-872c-4485-a611-3dd9ba49de67)
+![educa-website-three vercel app_dashboard](https://github.com/user-attachments/assets/fa568bbc-8af3-4f75-bcf8-977e5b318726)
+
 
 ## Features
 
@@ -21,6 +22,13 @@ This repository contains the frontend part of the School Management Fees System,
 - **React-PDF**: A library for generating PDF documents in the browser.
 - **Redux**: A state management library for managing application state.
 - **React Query**: A library for fetching, caching, and updating server data.
+
+## Backend Codebase
+
+The backend for the **Educa School Fees Management System** is built using **Node.js**, **Express**, **MongoDB**, and **Mongoose** for the database layer. It includes features like custom authentication, schema validation with Zod, and secure JWT-based authorization.
+
+You can find the backend codebase here:
+**[Educa School Fees Management System - Backend](https://github.com/AR-Tausif/educa-backend)**
 
 ## Getting Started
 
