@@ -44,3 +44,23 @@ You can find the backend codebase here:
    ```sh
    git clone https://github.com/AR-Tausif/educa-website.git
    cd educa-website
+
+2. Installs dep:
+   ```sh
+   npm install
+
+3. Start the development server:
+   ```sh
+   npm run dev
+
+## Login Credentials
+
+Use the following credentials for testing the application:
+
+- **Admin Account**
+  - Email: `abc@gmail.com`
+  - Password: `EDUCA-admin-12`
+
+- **User Account**
+  - Email: `user@example.com`
+  - Password: `EDUCA-user-12`
